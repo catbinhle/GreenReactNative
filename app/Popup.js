@@ -17,7 +17,7 @@ class Popup extends Component {
                 <View style={styles.contentSelectedView}>
                     <Image style={styles.imageSelectedView} source={{uri: item?.image}}/>
                     <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{fontSize: 'bold'}}>{item?.city}</Text>
+                        <Text style={{fontWeight: 'bold'}}>{item?.city}</Text>
                     </View>
                 </View>
                 <TouchableOpacity style={[styles.selectedView, styles.overlaySelectedView]}
