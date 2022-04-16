@@ -56,8 +56,9 @@ class Home extends Component {
 
     render() {
         const {city, image, isSelected} = this.state
-
+        debugger
         return (
+            
             <View style={styles.container}>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', paddingTop: 44}}>
