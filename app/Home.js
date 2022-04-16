@@ -32,7 +32,7 @@ class Home extends Component {
             </TouchableOpacity>
         )
     }
-
+//asdag
     _renderColumnView = (column) => {
         return (
             <View style={{flex: 1}}>
@@ -56,8 +56,8 @@ class Home extends Component {
 
     render() {
         const {city, image, isSelected} = this.state
-
-        return (
+        
+        return ( 
             <View style={styles.container}>
                 <ScrollView>
                     <View style={{justifyContent: 'center', alignItems: 'center', paddingTop: 44}}>
