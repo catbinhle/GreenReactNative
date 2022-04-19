@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions } from "react-native"
 const Styles = StyleSheet.create({
     container: {
         flex: 1,   
+        justifyContent: 'space-between',
     },
     shadowView: {
         flexDirection: 'row',

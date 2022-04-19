@@ -1,7 +1,7 @@
-import Home from './app/Home.js'
+import Navigator from './app/Navigator'
 
 export default function App() {
   return (
-    <Home/>
+    <Navigator/>
   )
 }
