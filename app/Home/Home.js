@@ -1,7 +1,7 @@
 import react, {Component} from "react"
 import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native'
-import styles from "./home.styles"
-import Popup from "./Popup"
+import styles from "./styles"
+import Popup from "../Popup/Popup"
 
 class Home extends Component {
     constructor(props) {
