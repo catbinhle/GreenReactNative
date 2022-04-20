@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Component",
-    "slug": "Component",
+    "name": "CityList",
+    "slug": "CityList",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
