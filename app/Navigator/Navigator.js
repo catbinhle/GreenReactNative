@@ -1,8 +1,8 @@
 import react, {Component} from "react"
 import {View, Text, TouchableOpacity, SafeAreaView} from 'react-native'
-import styles from "./home.styles"
-import Home from "./Home"
-import City from "./City"
+import styles from "./styles"
+import Home from "../Home/Home"
+import City from "../City/City"
 
 class Navigator extends Component {
     constructor(props) {
@@ -15,17 +15,17 @@ class Navigator extends Component {
     screens = ['Home', 'City']
 
     _renderHeader = () => (
-        <View style={{height: 44, justifyContent: 'center', alignItems: 'center', borderBottomWidth: 0.5, borderBottomColor: 'grey'}}>
-            <Text style={{fontSize: 18, fontWeight: 'bold'}}>{this.screens[this.state.indexScreen]}</Text>
+        <View style={styles.header}>
+            <Text style={styles.txtHeader}>{this.screens[this.state.indexScreen]}</Text>
         </View>
     )
 
     _renderTabbarBottom = () => (
-        <View style={{height: 44, flexDirection: 'row', justifyContent: 'space-between', borderTopColor: 'grey', borderTopWidth: 0.5}}>
+        <View style={styles.tabbar}>
             {
                 this.screens.map((item, index) => (
                     <TouchableOpacity 
-                        style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
+                        style={styles.tabbarItem}
                         onPress={() => this.setState({indexScreen: index})}>
                         <Text>{item}</Text>
                     </TouchableOpacity>

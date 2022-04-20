@@ -1,6 +1,6 @@
 import react, {Component} from "react"
 import {View, Text, Image, TouchableOpacity} from 'react-native'
-import styles from './home.styles'
+import styles from './styles'
 
 class Popup extends Component {
     constructor(props) {
