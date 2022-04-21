@@ -12,6 +12,10 @@ class Home extends Component {
 
     }
 
+    componentDidMount() {
+        this.props.title('Home')
+    }
+
     _renderItem = ({item}) => (
         <View style={styles.item}>
             <Image style={styles.image} source={{uri: item?.image}}/>
@@ -23,12 +27,12 @@ class Home extends Component {
     )
 
     render() {
-        const {data} = this.props
+        const {param} = this.props
         return (
             <View style={styles.container}>
                 <FlatList
                     numColumns={2}
-                    data={data}
+                    data={param}
                     renderItem={this._renderItem}
                     keyExtractor={item => item.id}
                 />
