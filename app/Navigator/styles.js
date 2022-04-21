@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native"
+import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes"
 
 const Styles = StyleSheet.create({
     container: {
@@ -22,7 +23,9 @@ const Styles = StyleSheet.create({
     tabbarItem: {
         flex: 1, 
         alignItems: 'center', 
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderColor:'gray',
+        borderWidth:0.5
     },
     txtHeader: {
         fontSize: 18, 
