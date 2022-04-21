@@ -2,17 +2,13 @@ import { StyleSheet, Dimensions } from "react-native"
 
 const Styles = StyleSheet.create({
     container: {
-        flex: 1,   
-        justifyContent: 'space-between',
+        flex: 1, 
+        padding: 11  
     },
-    shadowView: {
-        flexDirection: 'row',
+    item: {
+        justifyContent: 'flex-end',
+        width: '50%',
         backgroundColor: 'white',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingHorizontal: 8,
-        paddingVertical: 24,
-        margin: 20,
         shadowColor: 'black',
         borderRadius: 8,
         shadowOffset: {
@@ -22,36 +18,40 @@ const Styles = StyleSheet.create({
         elevation: 10,
         shadowRadius: 8,
         shadowOpacity: 0.1,
-        zIndex: 1
-      },
-    columnView: {
-        flex: 1
-        // marginVertical: 4
+        margin: 5,
+        borderRadius: 6
     },
-    childView: {
-        // flex: 1, 
-        flexDirection: 'row',
-        height: 50, 
-        marginHorizontal: 8,
-        borderRadius: 25,
-        backgroundColor: 'white',
-        borderWidth: 1,
-        borderColor: 'red', 
+    infoView: {
+        position: 'absolute',
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: 5
+        height: 32,
+        borderBottomLeftRadius: 6,
+        borderBottomRightRadius: 6
     },
-    childView1: {
-        backgroundColor: 'red'
+    opacityInfoView: {
+        position: 'absolute',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 32,
+        borderBottomLeftRadius: 6,
+        borderBottomRightRadius: 6,
+        backgroundColor: 'black',
+        opacity: 0.8
     },
-    txt: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: 'green',
-        textAlign: 'center',
-        lineHeight: 18
+    image: {
+        height: 200, 
+        width: '100%',
+        resizeMode: 'stretch',
+        borderRadius: 6
+    },
+    txtName: {
+        fontSize: 14,
+        fontWeight: '700',
+        color: 'white'
     }
-
 })
 
 export default Styles
