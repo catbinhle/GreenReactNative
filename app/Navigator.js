@@ -16,17 +16,17 @@ class Navigator extends Component {
 
     _renderHeader = () => (
         <View style={{height: 44, justifyContent: 'center', alignItems: 'center', borderBottomWidth: 0.5, borderBottomColor: 'grey'}}>
-            <Text style={{fontSize: 18, fontWeight: 'bold'}}>Home</Text>
+            <Text style={{fontSize: 18, fontWeight: 'bold'}}>{this.screens[this.state.indexScreen]}</Text>
         </View>
     )
 
     _renderTabbarBottom = () => (
-        <View style={{height: 44, flexDirection: 'row', justifyContent: 'space-between', borderTopColor: 'grey', borderTopWidth: 0.5}}>
+        <View style={{height: 44, flexDirection: 'row', justifyContent: 'space-between', borderTopColor: 'grey', borderTopWidth: 0.5,backgroundColor:'steelblue'}}>
             {
-                this.screens.map(item => (
+                this.screens.map((item, index) => (
                     <TouchableOpacity 
-                        style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
-                        onPress={() => this.setState({indexScreen: 0})}>
+                        style={{flex: 1, alignItems: 'center', justifyContent: 'center',borderColor:'red'}}
+                        onPress={() => this.setState({indexScreen: index})}>
                         <Text>{item}</Text>
                     </TouchableOpacity>
                 ))
