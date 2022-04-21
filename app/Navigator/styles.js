@@ -22,7 +22,21 @@ const Styles = StyleSheet.create({
     tabbarItem: {
         flex: 1, 
         alignItems: 'center', 
-        justifyContent: 'center'
+        justifyContent: 'center',
+    },
+    activeItem: {
+        backgroundColor: 'white'
+    },
+    deactiveItem: {
+        backgroundColor: '#cacaca'
+    },
+    activeTxtItem: {
+        color: 'black',
+        fontWeight: 'bold'
+    },
+    deactiveTxtItem: {
+        color: 'white',
+        fontWeight: 'bold'
     },
     txtHeader: {
         fontSize: 18, 
