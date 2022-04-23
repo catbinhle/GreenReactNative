@@ -1,7 +1,7 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native"
-import Home, { provinces } from "../Home/Home"
+import {Image, ScrollView, Text, TouchableOpacity, View} from "react-native"
+import Home, {provinces} from "../Home/Home"
 import Styles from "./cityList.Styles"
-import { Component } from "react"
+import {Component} from "react"
 import CityDetail from "../CityDetail/CityDetail"
 import Province from "../Home/Province"
 import HeaderStyle from "../HeaderFooterStyle/HeaderStyle"
@@ -15,11 +15,10 @@ export default class CityList extends Component {
 
     state = {
         province: new Province(),
-        screen: 'cityList'
+        screen: 'cityList',
     }
 
-    _renderCityList(province) {
-        return (
+    _renderCityList = (province) => (
             <TouchableOpacity style={Styles.listItem}
                 onPress={() => {
                     this.setState({
@@ -28,17 +27,18 @@ export default class CityList extends Component {
                     })
                 }}
             >
-                <Image style={Styles.cityImage} source={province.image} />
-                <Text style={Styles.cityText}>{province.name}</Text>
+                <View style={Styles.leftCityView}>
+                    <Image style={Styles.cityImage} source={province?.image} />
+                    <Text style={Styles.cityText}>{province?.name}</Text>
+                </View>
                 <Icon
                     style={Styles.cityIcon}
-                     name="angle-right" 
-                     size={50} 
-                     color="black" 
+                    name="angle-right"
+                    size={50}
+                    color="black"
                 />
             </TouchableOpacity>
-        )
-    }
+    )
 
     _renderCityView() {
         return (
@@ -48,7 +48,7 @@ export default class CityList extends Component {
                 </View>
 
                 <ScrollView>
-                    <View style={Styles.cityList}>
+                    <View>
                         {
                             provinces.map(province => this._renderCityList(province))
                         }
@@ -57,14 +57,17 @@ export default class CityList extends Component {
 
                 <View style={FooterStyle.cityFoot}>
                     <TouchableOpacity
-                        style={FooterStyle.footButton}
+                        style={[FooterStyle.footButton, FooterStyle.active]}
                         onPress={() => this.setState({
                             screen: 'home'
                         })}
                     >
                         <Text style={FooterStyle.footText}>Home</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={FooterStyle.footButton}>
+                    <TouchableOpacity
+                        style={[FooterStyle.footButton, FooterStyle.deactive]}
+                        disabled={true}
+                    >
                         <Text style={FooterStyle.footText}>City</Text>
                     </TouchableOpacity>
                 </View>

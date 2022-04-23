@@ -13,13 +13,18 @@ const FooterStyle = StyleSheet.create({
         marginHorizontal: 5,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#B0F400',
         borderRadius: 10
     },
     footText: {
         fontSize: 16,
         fontWeight: 'bold'
     },
+    active: {
+        backgroundColor: '#B0F400',
+    },
+    deactive: {
+        backgroundColor: 'grey'
+    }
 })
 
 export default FooterStyle

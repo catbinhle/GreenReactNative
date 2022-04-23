@@ -1,8 +1,7 @@
-import { View, Image, Text, TouchableOpacity, ScrollView } from "react-native";
+import {Image, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import Styles from "./home.Styles";
-import react, { Component } from "react";
+import {Component} from "react";
 import Province from "./Province";
-import Popup from "../Popup/Popup";
 import CityDetail from "../CityDetail/CityDetail";
 import CityList from "../CityList/CityList";
 import HeaderStyle from "../HeaderFooterStyle/HeaderStyle";
@@ -25,8 +24,8 @@ export default class Home extends Component {
             <TouchableOpacity style={Styles.cellView}
                 onPress={() => {
                     this.setState({
-                        name: province.name,
-                        image: province.image,
+                        name: province?.name,
+                        image: province?.image,
                         screen: 'cityDetail',
                         province: province
                     })
@@ -34,10 +33,10 @@ export default class Home extends Component {
             >
                 <Image
                     style={Styles.image}
-                    source={province.image}
+                    source={province?.image}
                 />
                 <View style={Styles.description}>
-                    <Text style={Styles.text}>{province.name}</Text>
+                    <Text style={Styles.text}>{province?.name}</Text>
                 </View>
             </TouchableOpacity>
         )
@@ -59,17 +58,6 @@ export default class Home extends Component {
         )
     }
 
-    _renderSelectedProvince(image) {
-        return (
-            <Popup
-                image={image}
-                onPress={() => this.setState({
-                    isSelected: !this.state.isSelected
-                })}
-            />
-        )
-    }
-
     render() {
         const { province, screen } = this.state
         if (screen === 'cityList') return <CityList />
@@ -78,7 +66,7 @@ export default class Home extends Component {
         return (
             <View style={Styles.container}>
                 <View style={HeaderStyle.cityHeader}>
-                    <Text style={HeaderStyle.headerText}>City</Text>
+                    <Text style={HeaderStyle.headerText}>Home</Text>
                 </View>
 
                 <ScrollView>
@@ -90,11 +78,15 @@ export default class Home extends Component {
                 </ScrollView>
 
                 <View style={FooterStyle.cityFoot}>
-                    <TouchableOpacity style={FooterStyle.footButton}>
+                    <TouchableOpacity
+                        style={[FooterStyle.footButton, FooterStyle.deactive]}
+                        disabled={true}
+                    >
                         <Text style={FooterStyle.footText}>Home</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={FooterStyle.footButton}
+                    <TouchableOpacity
+                        style={[FooterStyle.footButton, FooterStyle.active]}
                         onPress={() => {
                             this.setState({
                                 screen: 'cityList'

@@ -16,21 +16,20 @@ const Styles = StyleSheet.create({
     },
     cellView: {
         margin: 2.5,
+        justifyContent: 'center',
         alignItems: 'center',
         marginVertical: 10,
         borderWidth: 2,
         borderRadius: 6,
         opacity: 0.8,
         backgroundColor: 'black',
-        
+
         shadowColor: 'black',
-        shadowOffset:{
-            width: 100,
-            height: 100
-        },
-        elevation: 10,
-        shadowOpacity: 1,
-        shadowRadius: 8
+        shadowOffset: { width: 10, height: 10 },
+        elevation: 70,
+        shadowOpacity: 0.8,
+        shadowRadius: 6,
+        zIndex: 1
     },
     image: {
         height: 170,
@@ -39,11 +38,13 @@ const Styles = StyleSheet.create({
     },
     description: {
         alignItems: 'center',
-        marginHorizontal: 10
+        marginHorizontal: 10,
     },
     text: {
         fontSize: 14,
-        color: 'white'
+        color: 'white',
+        fontWeight: "bold",
+        zIndex: 2
     },
     selectedView: {
         position: 'absolute',

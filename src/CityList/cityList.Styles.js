@@ -1,14 +1,11 @@
-import { StyleSheet, Dimensions } from "react-native"
+import {StyleSheet} from "react-native"
 
-export default Styles = StyleSheet.create({
+const Styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
         paddingTop: 24,
         paddingBottom: 5
-    },
-    cityList: {
-
     },
     listItem: {
         borderWidth: 2,
@@ -16,6 +13,10 @@ export default Styles = StyleSheet.create({
         marginVertical: 10,
         marginHorizontal: 16,
         flexDirection: 'row',
+    },
+    leftCityView: {
+        flex: 1,
+        flexDirection: 'row'
     },
     cityText: {
         marginHorizontal: 10,
@@ -31,3 +32,5 @@ export default Styles = StyleSheet.create({
         marginHorizontal:20
     }
 })
+
+export default Styles
