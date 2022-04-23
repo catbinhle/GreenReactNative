@@ -12,18 +12,24 @@ class Home extends Component {
 
     }
 
+    goScreen = (item) => {
+        this.props.goScreen('DetailScreen', item)
+    }
+
     componentDidMount() {
         this.props.title('Home')
     }
 
     _renderItem = ({item}) => (
-        <View style={styles.item}>
+        <TouchableOpacity 
+            style={styles.item}
+            onPress={() => this.goScreen(item)}>
             <Image style={styles.image} source={{uri: item?.image}}/>
             <View style={styles.opacityInfoView}/>
             <View style={styles.infoView}>
                 <Text style={styles.txtName}>{item?.name}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 
     render() {
