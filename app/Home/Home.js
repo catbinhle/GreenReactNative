@@ -1,7 +1,6 @@
 import react, {Component} from "react"
 import {View, Text, Image, TouchableOpacity, FlatList} from 'react-native'
 import styles from "./styles"
-import Popup from "../Popup/Popup"
 
 class Home extends Component {
     constructor(props) {
@@ -19,8 +18,6 @@ class Home extends Component {
     componentDidMount() {
         this.props.title('Home')
     }
-
-    componentDidCatch
 
     _renderItem = ({item}) => (
         <TouchableOpacity 
