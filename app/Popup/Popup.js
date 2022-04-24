@@ -1,5 +1,5 @@
 import react, {Component} from "react"
-import {View, Text, Image, TouchableOpacity} from 'react-native'
+import {View, Image, TouchableOpacity} from 'react-native'
 import styles from './styles'
 
 class Popup extends Component {
@@ -11,14 +11,14 @@ class Popup extends Component {
     }
 
     render() {
-        const {item, onPress} = this.props
+        const {imgeCity, onPress} = this.props
         return (
             <View style={styles.selectedView}>
                 <View style={styles.contentSelectedView}>
-                    <Image style={styles.imageSelectedView} source={{uri: item?.image}}/>
-                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                    <Image style={styles.imageSelectedView} source={{uri: imgeCity}}/>
+                    {/* <View style={{justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontWeight: 'bold'}}>{item?.city}</Text>
-                    </View>
+                    </View> */}
                 </View>
                 <TouchableOpacity style={[styles.selectedView, styles.overlaySelectedView]}
                         onPress={onPress}/>
