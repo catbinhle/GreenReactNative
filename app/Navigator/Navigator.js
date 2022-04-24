@@ -5,6 +5,7 @@ import Home from "../Home/Home"
 import Cities from "../Cities/Cities"
 import DetailCity from "../DetailCity/DetailCity"
 import Icon from 'react-native-vector-icons/FontAwesome'
+import Popup from "../Popup/Popup"
 
 class Navigator extends Component {
     constructor(props) {
@@ -12,7 +13,10 @@ class Navigator extends Component {
         this.state = {
             screen: 'Home',
             param: null,
-            title: ''
+            title: '',
+            popup: {
+                image: null,
+            }
         }
     }
 
@@ -30,6 +34,20 @@ class Navigator extends Component {
     onBackScreen = () => {
         this.stackScreens.pop()
         this.setState({screen: this.stackScreens[this.stackScreens.length - 1]})
+    }
+
+    onShowPopup = (image) => {
+        this.setState({
+            popup: {
+                image: image,
+            }
+        })
+        // this.setState(prevState => ({
+        //     popup: {
+        //         ...prevState.popup,
+        //         image: image
+        //     }
+        // }))
     }
 
     _renderHeader = (index) => (
@@ -80,8 +98,21 @@ class Navigator extends Component {
                 <DetailCity 
                     title={(title) => this.setState({title: title})}
                     param={param}
+                    onShowPopup={(image) => this.onShowPopup(image)}
                 />)
         }  
+    }
+
+    _renderPopup = () => {
+        const {image} = this.state.popup
+        if (image != null) {
+            return (
+                <Popup 
+                    imgeCity={image}
+                    onPress={() => this.onShowPopup(null)}
+                />
+            )
+        }
     }
 
     render() {
@@ -93,6 +124,7 @@ class Navigator extends Component {
                 {this._renderHeader(index)}
                 {this._renderContentView(index, param)}
                 {this._renderTabbarBottom(index)}
+                {this._renderPopup()}
             </SafeAreaView>
         )
     }

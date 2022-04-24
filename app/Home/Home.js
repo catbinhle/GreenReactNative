@@ -20,6 +20,8 @@ class Home extends Component {
         this.props.title('Home')
     }
 
+    componentDidCatch
+
     _renderItem = ({item}) => (
         <TouchableOpacity 
             style={styles.item}
@@ -38,6 +40,7 @@ class Home extends Component {
             <View style={styles.container}>
                 <FlatList
                     numColumns={2}
+                    showsVerticalScrollIndicator={false}
                     data={param}
                     renderItem={this._renderItem}
                     keyExtractor={item => item.id}
