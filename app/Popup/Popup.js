@@ -13,16 +13,14 @@ class Popup extends Component {
     render() {
         const {imgeCity, onPress} = this.props
         return (
-            <View style={styles.selectedView}>
+            <TouchableOpacity onPress={onPress} style={styles.selectedView}>
                 <View style={styles.contentSelectedView}>
                     <Image style={styles.imageSelectedView} source={{uri: imgeCity}}/>
                     {/* <View style={{justifyContent: 'center', alignItems: 'center'}}>
                         <Text style={{fontWeight: 'bold'}}>{item?.city}</Text>
                     </View> */}
                 </View>
-                <TouchableOpacity style={[styles.selectedView, styles.overlaySelectedView]}
-                        onPress={onPress}/>
-            </View>
+            </TouchableOpacity>
         )
     }
 }
