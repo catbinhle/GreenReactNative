@@ -41,6 +41,7 @@ class Cities extends Component {
         return (
             <View style={{ flex: 1 }}>
                 <FlatList
+                    showsVerticalScrollIndicator={false}
                     data={param}
                     renderItem={this._renderItem}
                     keyExtractor={item => item.id}

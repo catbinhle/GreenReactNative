@@ -1,7 +1,6 @@
 import react, { Component } from "react"
 import { View, Text, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import styles from "./styles"
-import Popup from "../Popup/Popup"
 
 class DetailCity extends Component {
     constructor(props) {
@@ -9,13 +8,16 @@ class DetailCity extends Component {
     }
 
     state = {
-
+        imgCity: null
     }
 
     _renderItem = ({item}) => (
-        <View style={styles.item}>
+        <TouchableOpacity 
+            style={styles.item}
+            onPress={() => this.props.onShowPopup(item?.image)}
+            >
             <Image style={styles.imgItem} source={{uri: item?.image}}/>
-        </View>
+        </TouchableOpacity>
     )
 
     componentDidMount() {
@@ -26,19 +28,21 @@ class DetailCity extends Component {
     render() {
         const {param} = this.props
         return (
-            <ScrollView style={styles.container}>
-                <Image style={styles.image} source={{uri: param?.image}}/>
-                <View style={{paddingHorizontal: 16}}>
-                    <Text style={{fontSize: 14}}>{param?.desc}</Text>
-                    <Text style={{fontSize: 16, fontWeight: '700', paddingTop: 16}}>{'Some images of ' + param?.name}</Text>
-                    <FlatList
-                        numColumns={2}
-                        data={data}
-                        renderItem={this._renderItem}
-                        keyExtractor={item => item.id}
-                    />
-                </View>
-            </ScrollView>
+            <View style={{flex: 1}}>
+                <ScrollView style={styles.container}>
+                    <Image style={styles.image} source={{uri: param?.image}}/>
+                    <View style={{paddingHorizontal: 16}}>
+                        <Text style={{fontSize: 14}}>{param?.desc}</Text>
+                        <Text style={{fontSize: 16, fontWeight: '700', paddingTop: 16}}>{'Some images of ' + param?.name}</Text>
+                        <FlatList
+                            numColumns={2}
+                            data={data}
+                            renderItem={this._renderItem}
+                            keyExtractor={item => item.id}
+                        />
+                    </View>
+                </ScrollView>
+            </View>
         )
     }
 }

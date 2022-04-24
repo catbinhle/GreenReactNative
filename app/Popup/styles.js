@@ -3,8 +3,8 @@ import { StyleSheet, Dimensions } from "react-native"
 const Styles = StyleSheet.create({
     selectedView: {
         position: 'absolute',
-        width: '100%',
-        height: '100%',
+        width: Dimensions.get('screen').width, 
+        height: Dimensions.get('screen').height, 
         top: 0,
         left: 0,
         alignItems: 'center',
@@ -14,7 +14,7 @@ const Styles = StyleSheet.create({
     },
     overlaySelectedView: {
         backgroundColor: 'black',
-        opacity: 0.6,
+        opacity: 0.8,
         zIndex: 1
     },
     contentSelectedView: {
