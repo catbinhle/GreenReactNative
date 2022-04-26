@@ -33,6 +33,7 @@ class Home extends Component {
     )
 
     _renderSearch = () => {
+        //test
         return (
             <View style={styles.searchView}>
                 <TextInput 
@@ -44,7 +45,7 @@ class Home extends Component {
                     onChangeText={(value) => {
                         console.log('TEST: --- ', value)
                     }}
-                />
+                /> 
                 <Icon name="search" size={16} color="dark-grey" />
             </View>
         )
