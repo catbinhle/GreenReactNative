@@ -24,10 +24,6 @@ const Styles = StyleSheet.create({
         flex: 1, 
         alignItems: 'center', 
         justifyContent: 'center',
-<<<<<<< HEAD
-        borderColor:'gray',
-        borderWidth:0.5
-=======
     },
     activeItem: {
         backgroundColor: 'white'
@@ -42,7 +38,6 @@ const Styles = StyleSheet.create({
     deactiveTxtItem: {
         color: 'white',
         fontWeight: 'bold'
->>>>>>> 56ce4f38590bcc722e7e0bd5a2d418c804b16e7a
     },
     txtHeader: {
         fontSize: 18, 
