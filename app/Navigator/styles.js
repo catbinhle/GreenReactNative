@@ -1,9 +1,10 @@
-import { StyleSheet, Dimensions } from "react-native"
+import { StyleSheet, Dimensions ,StatusBar} from "react-native"
 
 const Styles = StyleSheet.create({
     container: {
         flex: 1,   
         justifyContent: 'space-between',
+        marginTop:StatusBar.currentHeight
     },
     header: {
         paddingHorizontal: 16,

@@ -11,12 +11,14 @@ const Styles = StyleSheet.create({
         justifyContent: 'center',
         zIndex: 2,
         elevation: 10,
-    },
-    overlaySelectedView: {
         backgroundColor: 'black',
-        opacity: 0.8,
-        zIndex: 1
+        opacity:0.8
     },
+    // overlaySelectedView: {
+    //     backgroundColor: 'black',
+    //     opacity: 0.8,
+    //     zIndex: 1
+    // },
     contentSelectedView: {
         padding: 16, 
         zIndex: 2
