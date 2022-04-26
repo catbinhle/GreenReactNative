@@ -7,8 +7,10 @@ const Styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     header: {
+        paddingHorizontal: 16,
+        flexDirection: 'row',
         height: 44, 
-        justifyContent: 'center', 
+        justifyContent: 'space-between', 
         alignItems: 'center', 
         borderBottomWidth: 0.5, 
         borderBottomColor: 'grey'
@@ -19,6 +21,10 @@ const Styles = StyleSheet.create({
         justifyContent: 'space-between', 
         borderTopColor: 'grey', 
         borderTopWidth: 0.5
+    },
+    hideTabbar: {
+        height: 0, 
+        borderTopWidth: 0
     },
     tabbarItem: {
         flex: 1, 

@@ -13,8 +13,14 @@ class Cities extends Component {
 
     }
 
+    goScreen = (item) => {
+        this.props.goScreen('DetailScreen', item)
+    }
+
     _renderItem = ({item}) => (
-        <View style={styles.item}>
+        <TouchableOpacity 
+            style={styles.item}
+            onPress={() => this.goScreen(item)}>
             <View style={styles.leftItemView}>
                 <Image style={styles.logo} source={{uri: item?.image}}/>
                 <View style={styles.infoView}>
@@ -23,15 +29,20 @@ class Cities extends Component {
                 </View>
             </View>
             <Icon name="angle-right" size={24} color="black" />
-        </View>
+        </TouchableOpacity>
     )
 
+    componentDidMount() {
+        this.props.title('Cities')
+    }
+
     render() {
-        const {data} = this.props
+        const {param} = this.props
         return (
             <View style={{ flex: 1 }}>
                 <FlatList
-                    data={data}
+                    showsVerticalScrollIndicator={false}
+                    data={param}
                     renderItem={this._renderItem}
                     keyExtractor={item => item.id}
                 />
