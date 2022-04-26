@@ -34,6 +34,7 @@ class Home extends Component {
 
     _renderSearch = () => {
         //test
+        //test2
         return (
             <View style={styles.searchView}>
                 <TextInput 
