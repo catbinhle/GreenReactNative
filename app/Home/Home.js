@@ -1,6 +1,7 @@
 import react, {Component} from "react"
-import {View, Text, Image, TouchableOpacity, FlatList} from 'react-native'
+import {View, Text, Image, TouchableOpacity, FlatList, TextInput} from 'react-native'
 import styles from "./styles"
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 class Home extends Component {
     constructor(props) {
@@ -31,10 +32,29 @@ class Home extends Component {
         </TouchableOpacity>
     )
 
+    _renderSearch = () => {
+        return (
+            <View style={styles.searchView}>
+                <TextInput 
+                    style={{flex: 1, marginRight: 10}}
+                    placeholder={'Nhập tên thành phố'}
+                    placeholderTextColor={'grey'}
+                    // secureTextEntry={true} => thường dùng cho mật khẩu
+                    // keyboardType={'numeric'} => lựa chọn bàn phím
+                    onChangeText={(value) => {
+                        console.log('TEST: --- ', value)
+                    }}
+                />
+                <Icon name="search" size={16} color="dark-grey" />
+            </View>
+        )
+    }
+
     render() {
         const {param} = this.props
         return (
             <View style={styles.container}>
+                {this._renderSearch()}
                 <FlatList
                     numColumns={2}
                     showsVerticalScrollIndicator={false}
