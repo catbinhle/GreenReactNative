@@ -1,70 +1,89 @@
-import react, { useState } from "react"
-import { View, Text, Image, TouchableOpacity, FlatList, TextInput } from 'react-native'
-import styles from "./styles"
-import Icon from 'react-native-vector-icons/FontAwesome'
+import react, { useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  TextInput,
+} from "react-native";
+import styles from "./styles";
+import Icon from "react-native-vector-icons/FontAwesome";
 
-const Home = ({param, title, goScreen}) => {
-    const [searchData, setSearchData] = useState(param)
-    const filterData = (value) => {
-        // const { param } = this.props
-        // this.setState({
-        //     searchData: param.filter(item => item.name.includes(value))
-        // })
-        setSearchData(param.filter(item => item.name.includes(value)))
-    }
 
-    // const goScreen = (item) => {
-    //     goScreen('DetailScreen', item)
-    // }
+const Home = ({ param, title, goScreen }) => {
+  const [searchData, setSearchData] = useState(param);
 
-    // // componentDidMount() {
-    // //     this.props.title('Home')
-    // // }
+  const filterData = (value) => {
+    setSearchData(
+      param.filter(
+        (item) =>
+          item.name
+            .toLowerCase()
+            .replace(/\s+/g, "")
+            .startsWith(value.toLowerCase().replace(/\s+/g, ""))
+        // .includes(value.toLowerCase().replace(/\s+/g, ""))
+      )
+    );
+  };
 
-    const _renderItem = ({ item }) => (
-        <TouchableOpacity
-            style={styles.item}
-            onPress={() =>  goScreen('DetailScreen', item)}>
-            <Image style={styles.image} source={{ uri: item?.image }} />
-            <View style={styles.opacityInfoView} />
-            <View style={styles.infoView}>
-                <Text style={styles.txtName}>{item?.name}</Text>
-            </View>
-        </TouchableOpacity>
-    )
+  // function componentDidMount() {
 
-    const _renderSearch = (param) => {
-        return (
-            <View style={styles.searchView}>
-                <TextInput
-                    style={{ flex: 1, marginRight: 10 }}
-                    placeholder={'Nhập tên thành phố'}
-                    placeholderTextColor={'grey'}
-                    // secureTextEntry={true} => thường dùng cho mật khẩu
-                    // keyboardType={'numeric'} => lựa chọn bàn phím
-                    onChangeText={(value) => {
-                        filterData(value)
-                    }}
-                />
-                <Icon name="search" size={16} color="dark-grey" />
-            </View>
-        )
-    }
+  // }
+
+  const _renderItem = ({ item }) => (
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => goScreen("DetailScreen", item)}
+    >
+      <Image style={styles.image} source={{ uri: item?.image }} />
+      <View style={styles.opacityInfoView} />
+      <View style={styles.infoView}>
+        <Text style={styles.txtName}>{item?.name}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+
+  const _renderSearch = () => {
     return (
-        <View style={styles.container}>
-            {_renderSearch()}
-            <FlatList
-                numColumns={2}
-                showsVerticalScrollIndicator={false}
-                data={searchData}
-                renderItem={_renderItem}
-                keyExtractor={item => item.id}
-            />
-        </View>
-    )
-}
+      <View style={styles.searchView}>
+        <TextInput
+          style={{ flex: 1, marginRight: 10 }}
+          placeholder={"Nhập tên thành phố"}
+          placeholderTextColor={"grey"}
+          // secureTextEntry={true} => thường dùng cho mật khẩu
+          // keyboardType={'numeric'} => lựa chọn bàn phím
+          onChangeText={(newValue) => {
+            filterData(newValue);
+          }}
+        />
+        <Icon name="search" size={16} color="dark-grey" />
+      </View>
+    );
+  };
 
-export default Home
+  return (
+    <View style={styles.container}>
+      {_renderSearch()}
+      {searchData.length === 0 && (
+        <Text style={{ textAlign: "center", marginTop: 5 }}>
+          Không tìm thấy kết quả
+        </Text>
+      )}
+
+      <FlatList
+      contentContainerStyle={{marginTop: 5}}
+        numColumns={2}
+        showsVerticalScrollIndicator={false}
+        data={searchData}
+        renderItem={_renderItem}
+      />
+    </View>
+  );
+};
+
+export default Home;
 
 // class Home extends Component {
 //     constructor(props) {
