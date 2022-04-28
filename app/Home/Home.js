@@ -1,26 +1,16 @@
-import react, { useState } from "react"
+import react, { useState, Component, useEffect } from "react"
 import { View, Text, Image, TouchableOpacity, FlatList, TextInput } from 'react-native'
 import styles from "./styles"
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-const Home = ({param, title, goScreen}) => {
+const Home = ({param, setTitle, goScreen}) => {
+    useEffect(() => {
+        setTitle('Home')
+    },[])
     const [searchData, setSearchData] = useState(param)
     const filterData = (value) => {
-        // const { param } = this.props
-        // this.setState({
-        //     searchData: param.filter(item => item.name.includes(value))
-        // })
         setSearchData(param.filter(item => item.name.includes(value)))
     }
-
-    // const goScreen = (item) => {
-    //     goScreen('DetailScreen', item)
-    // }
-
-    // // componentDidMount() {
-    // //     this.props.title('Home')
-    // // }
-
     const _renderItem = ({ item }) => (
         <TouchableOpacity
             style={styles.item}
@@ -32,7 +22,6 @@ const Home = ({param, title, goScreen}) => {
             </View>
         </TouchableOpacity>
     )
-
     const _renderSearch = (param) => {
         return (
             <View style={styles.searchView}>
@@ -58,7 +47,7 @@ const Home = ({param, title, goScreen}) => {
                 showsVerticalScrollIndicator={false}
                 data={searchData}
                 renderItem={_renderItem}
-                keyExtractor={item => item.id}
+                keyExtractor={(item, index) => index.toString()}
             />
         </View>
     )
@@ -70,7 +59,8 @@ export default Home
 //     constructor(props) {
 //         super(props)
 //         this.state = {
-//             searchData: []
+//             searchData: [],
+//             isRefreshing: false
 //         }
 //     }
 
@@ -87,6 +77,11 @@ export default Home
 
 //     componentDidMount() {
 //         this.props.title('Home')
+//     }
+
+//     componentWillUnmount() {
+//         debugger
+//         console.log('BINH Test: componentWillUnmount')
 //     }
 
 //     _renderItem = ({item}) => (
@@ -119,7 +114,8 @@ export default Home
 
 //     render() {
 //         const {param} = this.props
-//         const {searchData} = this.state
+//         const {searchData, isRefreshing} = this.state
+//         console.log('BINH TEST: ',searchData)
 
 //         return (
 //             <View style={styles.container}>
@@ -127,9 +123,28 @@ export default Home
 //                 <FlatList
 //                     numColumns={2}
 //                     showsVerticalScrollIndicator={false}
-//                     data={searchData}
+//                     legacyImplementation={false}
+//                     data={searchData.length > 0 ? searchData : param}
 //                     renderItem={this._renderItem}
-//                     keyExtractor={item => item.id}
+//                     keyExtractor={(item, index) => index.toString()}
+//                     // onEndReachedThreshold={0.1}
+//                     // onEndReached={() => {
+//                     //     debugger
+//                     //     console.log('Load more data, if we have backend team')
+//                     // }}
+//                     refreshing={isRefreshing}
+//                     onRefresh={() => {
+//                         // debugger
+//                         console.log('Refresh Flatlist')
+//                         this.setState({isRefreshing: true})
+                        
+//                         setTimeout(() => {
+//                             this.setState({isRefreshing: false})
+//                             console.log('Binh Test 1')
+//                         }, 2000)
+//                         console.log('Binh Test 2')
+                        
+//                     }}
 //                 />
 //             </View>
 

@@ -2,7 +2,7 @@ import react, {Component} from "react"
 import {View, Text, TouchableOpacity, SafeAreaView} from 'react-native'
 import styles from "./styles"
 import Home from "../Home/Home"
-import Cities from "../Cities/Cities"
+import Tours from "../Tours/Tours"
 import DetailCity from "../DetailCity/DetailCity"
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Popup from "../Popup/Popup"
@@ -20,8 +20,8 @@ class Navigator extends Component {
         }
     }
 
-    screens = ['Home', 'City', 'DetailScreen']
-    tabbarScreen = ['Home', 'City']
+    screens = ['Home', 'Tours', 'DetailScreen']
+    tabbarScreen = ['Home', 'Tours']
     stackScreens = ['Home']
 
     onGoScreen = (screen, param) => {
@@ -85,13 +85,13 @@ class Navigator extends Component {
             case 0: return (
                 <Home 
                     param={data} 
-                    title={(title) => this.setState({title: title})}
+                    setTitle={(title) => this.setState({title: title})}
                     goScreen={(screen, param) => this.onGoScreen(screen, param)}
                 />)
             case 1: return (
-                <Cities 
+                <Tours 
                     param={data} 
-                    title={(title) => this.setState({title: title})}
+                    setTitle={(title) => this.setState({title: title})}
                     goScreen={(screen, param) => this.onGoScreen(screen, param)}
                 />)
             case 2: return (
@@ -132,56 +132,67 @@ class Navigator extends Component {
 
 const data = [
     {
+        id: 1,
         name: 'Ha Noi',
         desc: 'The capital in Vietnam',
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/ThapRua.jpg/2560px-ThapRua.jpg'
     },
     {
+        id: 2,
         name: 'Ho Chi Minh city',
         desc: 'The bigest city in Vietnam',
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Notre_dame_saigon.jpg/1024px-Notre_dame_saigon.jpg'
     },
     {
+        id: 3,
         name: 'Hue',
         desc: 'The old capital in Vietnam',
         image: 'https://cdnimg.vietnamplus.vn/t620/uploaded/mzdic/2021_12_16/dai_noi_hue_1612.jpg'
     },
     {
+        id: 4,
         name: 'Da Nang',
         desc: 'The city in central of Vietnam',
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Han_River_Bridge_in_Vietnam_Night_View.jpg/308px-Han_River_Bridge_in_Vietnam_Night_View.jpg'
     },
     {
+        id: 5,
         name: 'Da Lat',
         desc: 'The city in central highland of Vietnam',
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Da_Lat_train_station_21.jpg/1920px-Da_Lat_train_station_21.jpg'
     },
     {
+        id: 6,
         name: 'Nha Trang',
         desc: 'The beach city in central of Vietnam',
         image: 'https://statics.vinpearl.com/bien-nha-trang-ve-dem-9%20(1)_1634535402.jpg'
     },
     {
+        id: 7,
         name: 'Hoi An',
         desc: 'The old town in central of Vietnam',
         image: 'https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/08/hoi-an-quang-nam-vntrip.jpg'
     },
     {
+        id: 8,
         name: 'Can Tho',
         desc: 'The city in west south of Vietnam',
         image: 'https://tudienwiki.com/wp-content/uploads/2015/10/cau-can-tho.jpg'
     },
     {
+        id: 9,
         name: 'Phu Quoc',
         desc: 'The island city in west south of Vietnam',
         image: 'https://media.travel.com.vn/tour/tfd_220412012542_308483.jpg'
     },
     {
+        id: 10,
         name: 'Vung Tau',
         desc: 'The city in southest of Vietnam',
         image: 'https://i1-dulich.vnecdn.net/2021/12/06/13-2269-1638784751.jpg?w=680&h=0&q=100&dpr=2&fit=crop&s=4cERFe2QXEdklLLXCbYHyg'
     },
     {
+        id: 11,
         name: 'Buon Me Thuot',
         desc: 'The bigest city in central highland of Vietnam',
         image: 'https://www.vietnamonline.com/media/uploads/froala_editor/images/vno_BMT1.jpg'
