@@ -1,10 +1,22 @@
-import Navigator from './app/Navigator/Navigator'
-import { LogBox } from 'react-native'
+import React from 'react';
+import {View, StyleSheet, Text, StatusBar, LogBox} from 'react-native';
+import NavPage from './screens/NavPage';
 
-export default function App() {
-  LogBox.ignoreAllLogs()
-  LogBox.ignoreLogs(['Warning: ...'])
+const App = () => {
+  LogBox.ignoreAllLogs();
+  LogBox.ignoreLogs(['Warning: ...']);
   return (
-    <Navigator/>
-  )
-}
+    <View style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="transparent" />
+      <NavPage />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
+
+export default App;
