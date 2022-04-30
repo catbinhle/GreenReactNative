@@ -1,36 +1,37 @@
 import React, { Component } from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Touchable,
-  ScrollView,
-  Pressable,
-} from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { HomePage, ToursPage, DetailsPage } from "../screens";
+import { HomePage, ToursPage, DetailsPage, Popup } from "../screens";
 
-const namePage = ["Home", "Tours"];
+const tabButton = ["Home", "Tours"];
+const nameStacks = ["Home"];
 
 class NavPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "Home",
+      title: "",
       namePage: "Home",
       param: null,
     };
   }
 
-  _onGoTo(namePage, param) {
+  onGoTo(namePage, param) {
+    nameStacks.push(namePage);
     this.setState({
       namePage: namePage,
       param: param,
     });
   }
 
+  onGoBack() {
+    nameStacks.pop();
+    this.setState({ namePage: nameStacks[nameStacks.length - 1] });
+    
+  }
+
   _renderHeader() {
+    console.log(nameStacks.length)
     return (
       <View style={styles.headerContainer}>
         <View
@@ -40,18 +41,17 @@ class NavPage extends Component {
             paddingHorizontal: 5,
           }}
         >
-          {this.state.namePage === "Details" && (
+          {nameStacks.length > 1 ? (
             <TouchableOpacity
               style={{ width: 25 }}
-              onPress={() => {
-                this.setState({ namePage: "Home" });
-              }}
+              onPress={() => this.onGoBack()}
             >
               <Ionicons name="chevron-back" size={24} color="black" />
             </TouchableOpacity>
+          ) : (
+            <View />
           )}
         </View>
-
         <View
           style={{
             flex: 3,
@@ -76,30 +76,36 @@ class NavPage extends Component {
       <View
         style={[
           styles.bottomTabContainer,
-          {height: this.state.namePage === "Details" ? 0 : undefined },
+          {
+            height:
+              this.state.namePage === "Details" ||
+              this.state.namePage === "Popup"
+                ? 0
+                : undefined,
+          },
         ]}
       >
-        {namePage.map((e, index) => {
+        {tabButton.map((name, index) => {
           return (
             <TouchableOpacity
               onPress={() => {
-                this.setState({ namePage: e });
+                this.setState({ namePage: name });
               }}
               key={index}
               style={
-                this.state.namePage === e
+                this.state.namePage === name
                   ? styles.btnActive
                   : styles.btnInactive
               }
             >
               <Text
                 style={
-                  this.state.namePage === e
+                  this.state.namePage === name
                     ? { ...styles.txtBtn, color: "white" }
                     : styles.txtBtn
                 }
               >
-                {e}
+                {name}
               </Text>
             </TouchableOpacity>
           );
@@ -115,7 +121,7 @@ class NavPage extends Component {
         {namePage === "Home" && (
           <HomePage
             title={(title) => this.setState({ title: title })}
-            onGoTo={(namePage, param) => this._onGoTo(namePage, param)}
+            onGoTo={(namePage, param) => this.onGoTo(namePage, param)}
           />
         )}
         {namePage === "Tours" && (
@@ -125,8 +131,10 @@ class NavPage extends Component {
           <DetailsPage
             title={(title) => this.setState({ title: title })}
             param={param}
+            onGoTo={(namePage, param) => this.onGoTo(namePage, param)}
           />
         )}
+        {namePage === "Popup" && <Popup param={param} />}
       </View>
     );
   }

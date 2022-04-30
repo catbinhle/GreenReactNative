@@ -9,7 +9,7 @@ import {
   FlatList,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { data } from "../src/data";
+
 
 class DetailsPage extends Component {
   constructor(props) {
@@ -19,12 +19,17 @@ class DetailsPage extends Component {
 
   componentDidMount() {
     const { param, title } = this.props;
-    title(param?.name);
+    title(param.name);
   }
 
   _renderItem(item) {
+    const { onGoTo } = this.props;
     return (
-      <TouchableOpacity key={item.id} style={styles.itemContainer}>
+      <TouchableOpacity
+        onPress={() => onGoTo("Popup", item)}
+        key={item.id}
+        style={styles.itemContainer}
+      >
         <View style={{ flexDirection: "row" }}>
           <Image style={styles.itemImage} source={{ uri: item?.image }} />
           <View style={styles.itemTextContainer}>
@@ -43,7 +48,6 @@ class DetailsPage extends Component {
 
   render() {
     const { param } = this.props;
-    console.log(param.places);
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -55,12 +59,12 @@ class DetailsPage extends Component {
               <Text style={styles.txtGioiThieu}>GIỚI THIỆU</Text>
             </View>
             <View style={{ top: -20 }}>
-              <Text style={styles.descTxt}>{param?.desc}</Text>
+              <Text style={styles.descTxt}>{param.desc}</Text>
             </View>
           </View>
           <View style={{ marginLeft: 12, marginTop: -15, marginBottom: 5 }}>
             <Text style={{ fontSize: 15, fontWeight: "bold" }}>
-              Những điểm du lịch của {param?.name}
+              Những điểm du lịch của {param.name}
             </Text>
           </View>
 
@@ -71,8 +75,8 @@ class DetailsPage extends Component {
               return this._renderItem(item);
             }}
           /> */}
-          <View style={{marginBottom: 10}}>
-            {param.places.map((place) => {
+          <View style={{ marginBottom: 10 }}>
+            {param.places?.map((place) => {
               return this._renderItem(place);
             })}
           </View>
@@ -145,9 +149,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "black",
-    justifyContent:'center',
-    alignItems:'center',
-    elevation: 3
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 3,
   },
   txtGioiThieu: {
     color: "black",

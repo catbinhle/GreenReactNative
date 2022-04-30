@@ -62,7 +62,7 @@ componentDidMount(){
   }
 
   _renderItem(item, index) {
-    const { onGoTo, param } = this.props;
+    const { onGoTo} = this.props;
     return (
       <TouchableOpacity
         onPress={() => onGoTo("Details", item,index)}

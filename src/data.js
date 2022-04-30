@@ -12,6 +12,96 @@ export const data = {
             "https://dulichkhampha24.com/wp-content/uploads/2020/01/gioi-thieu-ve-ha-noi-8.jpg",
           name: "Văn Miếu",
           sub_title: "Quốc Tử Giám",
+          services: {
+            food_drink: [
+              {
+                image:
+                  "https://capherangxay.vn/wp-content/uploads/2019/12/kinh-doanh-cafe-online-co-thu-vi-khong-5.jpg",
+                name: "Quán Cafe ABC",
+                address: "Vị trí 123",
+                rate: 4,
+              },
+              {
+                image:
+                  "https://cdn.nguyenkimmall.com/images/companies/_1/tin-tuc/kinh-nghiem-meo-hay/n%E1%BA%A5u%20%C4%83n/nau-lau-thai-chuan-vi-ngon-nhu-the-nao.jpg",
+                name: "Quán Lẩu XYZ",
+                address: "Vị trí 321",
+                rate: 5,
+              },
+              {
+                image:
+                  "https://media.cooky.vn/recipe/g4/35082/s640/cooky-recipe-636676252579758376.JPG",
+                name: "Quán Cơm 233",
+                address: "Vị trí 389",
+                rate: 3,
+              },
+              {
+                image:
+                  "https://capherangxay.vn/wp-content/uploads/2019/12/kinh-doanh-cafe-online-co-thu-vi-khong-5.jpg",
+                name: "Quán Cafe ABC",
+                address: "Vị trí 123",
+                rate: 4,
+              },
+              {
+                image:
+                  "https://cdn.nguyenkimmall.com/images/companies/_1/tin-tuc/kinh-nghiem-meo-hay/n%E1%BA%A5u%20%C4%83n/nau-lau-thai-chuan-vi-ngon-nhu-the-nao.jpg",
+                name: "Quán Lẩu XYZ",
+                address: "Vị trí 321",
+                rate: 5,
+              },
+              {
+                image:
+                  "https://media.cooky.vn/recipe/g4/35082/s640/cooky-recipe-636676252579758376.JPG",
+                name: "Quán Cơm 233",
+                address: "Vị trí 389",
+                rate: 3,
+              },
+            ],
+            fashion: [
+              {
+                image:
+                  "https://hidanz.com/wp-content/uploads/2021/06/fast-fashion-la-gi-1.png",
+                name: "Shop quần áo ABC",
+                address: "Vị trí 555",
+                rate: 5,
+              },
+              {
+                image:
+                  "https://mcdn.nhanh.vn/store/26685/ps/20210619/47a307e43d0988bab416d5be4c6d0e80.jpg",
+                name: "Shop giầy XYZ",
+                address: "Vị trí 777",
+                rate: 3,
+              },
+              {
+                image:
+                  "https://image-us.24h.com.vn/upload/3-2020/images/2020-08-21/1-1597977582-791-width660height440.jpg",
+                name: "Shop điện thoại SOS",
+                address: "Vị trí 3389",
+                rate: 3,
+              },
+              {
+                image:
+                  "https://hidanz.com/wp-content/uploads/2021/06/fast-fashion-la-gi-1.png",
+                name: "Shop quần áo ABC",
+                address: "Vị trí 555",
+                rate: 5,
+              },
+              {
+                image:
+                  "https://mcdn.nhanh.vn/store/26685/ps/20210619/47a307e43d0988bab416d5be4c6d0e80.jpg",
+                name: "Shop giầy XYZ",
+                address: "Vị trí 777",
+                rate: 3,
+              },
+              {
+                image:
+                  "https://image-us.24h.com.vn/upload/3-2020/images/2020-08-21/1-1597977582-791-width660height440.jpg",
+                name: "Shop điện thoại SOS",
+                address: "Vị trí 3389",
+                rate: 3,
+              },
+            ],
+          },
         },
         {
           id: 2,
@@ -392,7 +482,7 @@ export const data = {
         {
           id: 5,
           image:
-            "https://phuot3mien.com/wp-content/uploads/2020/12/san-ho-di-bo-duoi-nuoc-seawalking-phu-quoc-6.jpg",
+            "https://divui.com/content/images/thumbs/0021365_di-bo-duoi-day-bien-kham-pha-cong-vien-san-ho-phu-quoc.jpeg",
           name: "Công Viên San Hô Namaste",
           sub_title: "Công Viên San Hô Namaste Phú Quốc",
         },
