@@ -27,11 +27,10 @@ class NavPage extends Component {
   onGoBack() {
     nameStacks.pop();
     this.setState({ namePage: nameStacks[nameStacks.length - 1] });
-    
   }
 
   _renderHeader() {
-    console.log(nameStacks.length)
+    console.log(nameStacks.length);
     return (
       <View style={styles.headerContainer}>
         <View
@@ -72,19 +71,8 @@ class NavPage extends Component {
   }
 
   _renderBottomTab() {
-    return (
-      <View
-        style={[
-          styles.bottomTabContainer,
-          {
-            height:
-              this.state.namePage === "Details" ||
-              this.state.namePage === "Popup"
-                ? 0
-                : undefined,
-          },
-        ]}
-      >
+    return this.state.namePage === "Home" || this.state.namePage === "Tours" ? (
+      <View style={styles.bottomTabContainer}>
         {tabButton.map((name, index) => {
           return (
             <TouchableOpacity
@@ -111,7 +99,7 @@ class NavPage extends Component {
           );
         })}
       </View>
-    );
+    ) : undefined;
   }
 
   _renderBody() {

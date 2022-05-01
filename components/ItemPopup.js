@@ -54,8 +54,10 @@ class ItemPopup extends Component {
         style={{
           backgroundColor: "white",
           marginHorizontal: 10,
-          elevation: 10,
+          elevation: 5,
           marginBottom: 20,
+          borderWidth: 1,
+          paddingBottom: 10,
         }}
       >
         <Text

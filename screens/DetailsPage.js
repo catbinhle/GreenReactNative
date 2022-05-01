@@ -49,7 +49,7 @@ class DetailsPage extends Component {
   render() {
     const { param } = this.props;
     return (
-      <ScrollView>
+      <ScrollView style={{backgroundColor:'#F7F7F7'}}>
         <View style={styles.container}>
           <View>
             <Image style={styles.imageCover} source={{ uri: param?.cover }} />
@@ -89,7 +89,6 @@ class DetailsPage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F7F7F7",
   },
   imageCover: {
     height: 300,
