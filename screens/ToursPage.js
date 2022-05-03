@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
-import Item from "../components/Item";
-import { data } from "../src/data";
+import ItemTours from "../components/ItemTours";
 
 class ToursPage extends Component {
   constructor(props) {
@@ -15,16 +14,17 @@ class ToursPage extends Component {
   }
 
   _renderItem(item) {
-    return <Item item={item} />;
+    return <ItemTours item={item} />;
   }
 
   render() {
+    const { param } = this.props;
     return (
       <View style={{ flex: 1 }}>
         <FlatList
           keyExtractor={(item) => `${item.id}`}
           contentContainerStyle={{ paddingBottom: 40, paddingTop: 10 }}
-          data={data.tours}
+          data={param.tours}
           renderItem={({ item, index }) => {
             return this._renderItem(item);
           }}

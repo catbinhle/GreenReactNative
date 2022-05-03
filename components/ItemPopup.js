@@ -48,7 +48,7 @@ class ItemPopup extends Component {
   }
 
   render() {
-    const { param, nameService, data } = this.props;
+    const {nameService, data } = this.props;
     return (
       <View
         style={{

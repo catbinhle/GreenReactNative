@@ -7,14 +7,18 @@ import {
   ScrollView,
   TouchableOpacity,
   FlatList,
+  Modal,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
+import Popup from "./Popup";
 
 class DetailsPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      item: null,
+      isShow: false,
+    };
   }
 
   componentDidMount() {
@@ -26,7 +30,7 @@ class DetailsPage extends Component {
     const { onGoTo } = this.props;
     return (
       <TouchableOpacity
-        onPress={() => onGoTo("Popup", item)}
+        onPress={() => this.setState({ item: item, isShow: true })}
         key={item.id}
         style={styles.itemContainer}
       >
@@ -46,10 +50,19 @@ class DetailsPage extends Component {
     );
   }
 
+  _renderPopup() {
+    const { item, isShow } = this.state;
+    return (
+      <Modal animationType="slide" visible={isShow}>
+        <Popup onClose={() => this.setState({ isShow: false })} item={item} />
+      </Modal>
+    );
+  }
+
   render() {
     const { param } = this.props;
     return (
-      <ScrollView style={{backgroundColor:'#F7F7F7'}}>
+      <ScrollView style={{ backgroundColor: "#F7F7F7" }}>
         <View style={styles.container}>
           <View>
             <Image style={styles.imageCover} source={{ uri: param?.cover }} />
@@ -75,11 +88,13 @@ class DetailsPage extends Component {
               return this._renderItem(item);
             }}
           /> */}
+          
           <View style={{ marginBottom: 10 }}>
             {param.places?.map((place) => {
               return this._renderItem(place);
             })}
           </View>
+          {this._renderPopup()}
         </View>
       </ScrollView>
     );

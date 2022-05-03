@@ -8,7 +8,6 @@ import {
   FlatList,
   ScrollView,
 } from "react-native";
-
 import ItemPopup from "../components/ItemPopup";
 
 class Popup extends Component {
@@ -18,33 +17,34 @@ class Popup extends Component {
   }
 
   render() {
-    const { param } = this.props;
-    console.log(param);
+    const { item, onClose } = this.props;
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <View>
-            <Image style={{ height: 300 }} source={{ uri: param.image }} />
+            <Image style={{ height: 300 }} source={{ uri: item?.image }} />
             <View style={styles.overlayContainer}>
               <Text
                 style={{ color: "white", fontSize: 15, fontWeight: "bold" }}
               >
-                {param.name}
+                {item.name}
               </Text>
             </View>
+            <TouchableOpacity onPress={onClose} style={styles.closeBtn}>
+              <Text
+                style={{ color: "white", fontSize: 18, fontWeight: "bold" }}
+              >
+                X
+              </Text>
+            </TouchableOpacity>
           </View>
           <View style={{ flex: 1 }}>
             <Text style={styles.txtService}>Dịch vụ quanh đây :</Text>
-            {/* <Text>
-            {param.services.food_drink.map((e) => {
-              return <Text>{e.name}</Text>;
-            })}
-          </Text> */}
             <ItemPopup
-              data={param.services?.food_drink}
+              data={item.services?.food_drink}
               nameService="Food & Drinks"
             />
-            <ItemPopup data={param.services?.fashion} nameService="Fashion" />
+            <ItemPopup data={item.services?.fashion} nameService="Fashion" />
           </View>
         </View>
       </ScrollView>
@@ -71,6 +71,16 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textDecorationLine: "underline",
     textTransform: "uppercase",
+  },
+  closeBtn: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    height: 25,
+    width: 25,
+    backgroundColor: "#000000aa",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

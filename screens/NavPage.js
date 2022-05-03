@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { HomePage, ToursPage, DetailsPage, Popup } from "../screens";
+import { data } from "../src/data";
 
 const tabButton = ["Home", "Tours"];
 const nameStacks = ["Home"];
@@ -30,7 +31,6 @@ class NavPage extends Component {
   }
 
   _renderHeader() {
-    console.log(nameStacks.length);
     return (
       <View style={styles.headerContainer}>
         <View
@@ -108,12 +108,16 @@ class NavPage extends Component {
       <View style={styles.containerBody}>
         {namePage === "Home" && (
           <HomePage
+            param={data}
             title={(title) => this.setState({ title: title })}
             onGoTo={(namePage, param) => this.onGoTo(namePage, param)}
           />
         )}
         {namePage === "Tours" && (
-          <ToursPage title={(title) => this.setState({ title: title })} />
+          <ToursPage
+            param={data}
+            title={(title) => this.setState({ title: title })}
+          />
         )}
         {namePage === "Details" && (
           <DetailsPage

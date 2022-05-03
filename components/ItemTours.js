@@ -3,7 +3,7 @@ import { View, StyleSheet, TouchableOpacity, Image, Text } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-class Item extends Component {
+class ItemTours extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,9 +12,9 @@ class Item extends Component {
   }
 
   render() {
-    const { item } = this.props;
+    const { item,index } = this.props;
     return (
-      <View style={styles.itemContainer}>
+      <View key={index} style={styles.itemContainer}>
         <View style={styles.rowContainer}>
           <View style={styles.imageContainer}>
             <Image
@@ -50,7 +50,6 @@ class Item extends Component {
         )}
 
         {/* Nút 3 chấm */}
-
         <TouchableOpacity
           onPress={() => {
             this.setState((prevState, prevProps) => ({
@@ -114,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Item;
+export default ItemTours;

@@ -9,14 +9,15 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Feather from "react-native-vector-icons/Feather";
-import { data } from "../src/data";
+
 class HomePage extends Component {
   constructor(props) {
     super(props);
+    const {param} = this.props
     this.state = {
       // searchValue: '',
-      filterData: data.home,
-      tempData: data.home,
+      filterData: param.home,
+      tempData: param.home,
     };
   }
 
