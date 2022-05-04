@@ -65,7 +65,7 @@ componentDidMount(){
     const { onGoTo} = this.props;
     return (
       <TouchableOpacity
-        onPress={() => onGoTo("Details", item,index)}
+        onPress={() => onGoTo("Details", item)}
         key={index}
         style={styles.imageCoverContainer}
       >
