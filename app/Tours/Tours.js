@@ -19,7 +19,10 @@ const Tours = ({param, setTitle, goScreen}) => {
         setShowMoreList(list)
     }
     const _renderItem = ({ item, index }) => (
-        <View style={styles.item}>
+        <TouchableOpacity 
+            style={styles.item}
+            onPress={() =>  goScreen('Map', item)}
+        >
             <View style={styles.aboveItem}>
                 <View style={styles.leftItemView}>
                     <Image style={styles.logo} source={{ uri: item?.image }} />
@@ -56,7 +59,7 @@ const Tours = ({param, setTitle, goScreen}) => {
                 :
                 null
             }
-        </View>
+        </TouchableOpacity>
     )
     return (
         <View style={styles.container}>

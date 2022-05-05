@@ -6,6 +6,7 @@ import Tours from "../Tours/Tours"
 import DetailCity from "../DetailCity/DetailCity"
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Popup from "../Popup/Popup"
+import Map from "../Map/Map"
 
 class Navigator extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class Navigator extends Component {
         }
     }
 
-    screens = ['Home', 'Tours', 'DetailScreen']
+    screens = ['Home', 'Tours', 'DetailScreen', 'Map']
     tabbarScreen = ['Home', 'Tours']
     stackScreens = ['Home']
 
@@ -99,6 +100,12 @@ class Navigator extends Component {
                     title={(title) => this.setState({title: title})}
                     param={param}
                     onShowPopup={(image) => this.onShowPopup(image)}
+                />)
+            case 3: return (
+                <Map 
+                    // param={data} 
+                    setTitle={(title) => this.setState({title: title})}
+                    // goScreen={(screen, param) => this.onGoScreen(screen, param)}
                 />)
         }  
     }
