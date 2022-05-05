@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions ,StatusBar} from "react-native"
-
+ewrewrew
 const Styles = StyleSheet.create({
     container: {
         flex: 1,   
