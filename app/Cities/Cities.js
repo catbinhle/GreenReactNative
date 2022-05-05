@@ -33,7 +33,7 @@ class Cities extends Component {
     )
 
     componentDidMount() {
-        this.props.title('Cities')
+        // this.props.title('Cities')
     }
 
     render() {
