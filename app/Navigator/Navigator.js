@@ -1,17 +1,32 @@
 import react, { Component } from "react"
-import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native'
+import { View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'
 import styles from "./styles"
 import Home from "../Home/Home"
 import Cities from "../Cities/Cities"
 import DetailCity from "../DetailCity/DetailCity"
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import Popup from "../Popup/Popup"
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-const Stack = createNativeStackNavigator()
+const HomeStack = createNativeStackNavigator()
+const ToursStack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
+
+const HomeStackScreen = () => (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Home" component={Home} />
+      <HomeStack.Screen name="DetailCity" component={DetailCity} />
+    </HomeStack.Navigator>
+)
+
+const ToursStackScreen = () => (
+    <ToursStack.Navigator>
+      <HomeStack.Screen name="Tours" component={Cities} />
+    </ToursStack.Navigator>
+)
+
 
 const Navigator = () => {
     return (
@@ -20,9 +35,33 @@ const Navigator = () => {
                 <Stack.Screen name="Home" component={Home}/>
                 <Stack.Screen name="Detail" component={DetailCity}/>
             </Stack.Navigator> */}
-            <Tab.Navigator>
-                <Tab.Screen name="Home" component={Home} />
-                <Tab.Screen name="Cities" component={Cities} />
+            <Tab.Navigator
+                screenOptions={({ route }) => ({
+                    tabBarIcon: ({ focused, color, size }) => {
+                      let iconName;
+          
+                      if (route.name === 'Home') {
+                          iconName = 'home'
+                        // iconName = focused
+                        //   ? 'ios-information-circle'
+                        //   : 'ios-information-circle-outline';
+                      } else {
+                          iconName = 'route'
+                        // iconName = focused ? 'ios-list-box' : 'ios-list';
+                      }
+          
+                      // You can return any component that you like here!
+                      return <Icon name={iconName} size={size} color={color} />;
+                    // return <Image style={{height: 24, width: 24, resizeMode: 'cover'}} source={require('../../assets/tours.png')}/>
+                    },
+                    tabBarActiveTintColor: 'blue',
+                    tabBarInactiveTintColor: 'gray',
+                    size: 24,
+                    headerShown: false
+                  })}
+            >
+                <Tab.Screen name="Home" component={HomeStackScreen} />
+                <Tab.Screen name="Tours" component= {ToursStackScreen} />
             </Tab.Navigator>
         </NavigationContainer>
     )
