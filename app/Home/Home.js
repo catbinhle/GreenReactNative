@@ -14,7 +14,7 @@ class Home extends Component {
 
     goScreen = (item) => {
         // this.props.goScreen('DetailScreen', item)
-        this.props.navigation.navigate('Detail', item)
+        this.props.navigation.navigate('DetailCity', item)
     }
 
     componentDidMount() {

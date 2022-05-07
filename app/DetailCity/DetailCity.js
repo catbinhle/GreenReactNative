@@ -16,7 +16,7 @@ class DetailCity extends Component {
             style={styles.item}
             onPress={() => {
                 //this.props.onShowPopup(item?.image)
-                this.props.navigation.goBack()
+                this.props.navigation.navigate('Map',item)
             }}
             >
             <Image style={styles.imgItem} source={{uri: item?.image}}/>

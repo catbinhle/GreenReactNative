@@ -9,15 +9,36 @@ import Popup from "../Popup/Popup"
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Map from "../Map/Map"
 
 const HomeStack = createNativeStackNavigator()
 const ToursStack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
 const HomeStackScreen = () => (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator
+    screenOptions={{
+        headerStyle: {
+          backgroundColor: '#7f5bc7',
+        },
+        headerTintColor: 'white',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+        headerBackTitle: ''
+      }}
+    >
       <HomeStack.Screen name="Home" component={Home} />
-      <HomeStack.Screen name="DetailCity" component={DetailCity} />
+      <HomeStack.Screen 
+        name="DetailCity" 
+        component={DetailCity} 
+        options={({ route }) => ({ title: route.params.name })}
+      />
+      <HomeStack.Screen 
+        name="Map" 
+        component={Map} 
+        options={({ route }) => ({ title: route.params.name })}
+      />
     </HomeStack.Navigator>
 )
 
@@ -54,10 +75,13 @@ const Navigator = () => {
                       return <Icon name={iconName} size={size} color={color} />;
                     // return <Image style={{height: 24, width: 24, resizeMode: 'cover'}} source={require('../../assets/tours.png')}/>
                     },
-                    tabBarActiveTintColor: 'blue',
-                    tabBarInactiveTintColor: 'gray',
+                    tabBarActiveTintColor: 'white',
+                    tabBarInactiveTintColor: '#81898a',
                     size: 24,
-                    headerShown: false
+                    headerShown: false,
+                    tabBarStyle: {
+                        backgroundColor: '#7f5bc7'
+                    }
                   })}
             >
                 <Tab.Screen name="Home" component={HomeStackScreen} />
