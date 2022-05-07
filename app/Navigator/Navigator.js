@@ -1,86 +1,87 @@
-import react, {Component} from "react"
-import {View, Text, TouchableOpacity, SafeAreaView} from 'react-native'
+import react, { Component } from "react"
+import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native'
 import styles from "./styles"
 import Home from "../Home/Home"
 import Tours from "../Tours/Tours"
 import DetailCity from "../DetailCity/DetailCity"
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Popup from "../Popup/Popup"
+<<<<<<< HEAD
 import Map from "../Map/Map"
+=======
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+>>>>>>> e9bd2bc164f60a490e72062f88bc89deaf8ecd59
 
-class Navigator extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            screen: 'Home',
-            param: null,
-            title: '',
-            popup: {
-                image: null,
-            }
-        }
-    }
+const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator()
 
+<<<<<<< HEAD
     screens = ['Home', 'Tours', 'DetailScreen', 'Map']
     tabbarScreen = ['Home', 'Tours']
     stackScreens = ['Home']
-
-    onGoScreen = (screen, param) => {
-        this.stackScreens.push(screen)
-        this.setState({
-            screen: screen,
-            param: param
-        })
-    }
-    onBackScreen = () => {
-        this.stackScreens.pop()
-        this.setState({screen: this.stackScreens[this.stackScreens.length - 1]})
-    }
-
-    onShowPopup = (image) => {
-        this.setState({
-            popup: {
-                image: image,
-            }
-        })
-        // this.setState(prevState => ({
-        //     popup: {
-        //         ...prevState.popup,
-        //         image: image
-        //     }
-        // }))
-    }
-
-    _renderHeader = (index) => (
-        <View style={styles.header}>
-            { 
-                index >= this.tabbarScreen.length
-                ?
-                <TouchableOpacity onPress={() => this.onBackScreen()}>
-                    <Icon name="angle-left" size={24} color="black" /> 
-                </TouchableOpacity>
-                :
-                <View/>
-            }
-            <Text style={styles.txtHeader}>{this.state.title}</Text>
-            <View/>
-        </View>
+=======
+const Navigator = () => {
+    return (
+        <NavigationContainer>
+            {/* <Stack.Navigator>
+                <Stack.Screen name="Home" component={Home}/>
+                <Stack.Screen name="Detail" component={DetailCity}/>
+            </Stack.Navigator> */}
+            <Tab.Navigator>
+                <Tab.Screen name="Home" component={Home} />
+                <Tab.Screen name="Cities" component={Cities} />
+            </Tab.Navigator>
+        </NavigationContainer>
     )
+}
+>>>>>>> e9bd2bc164f60a490e72062f88bc89deaf8ecd59
 
-    _renderTabbarBottom = (indexScreen) => (
-        <View style={indexScreen >= this.tabbarScreen.length ? styles.hideTabbar : styles.tabbar}>
-            {
-                this.tabbarScreen.map((screen, index) => (
-                    <TouchableOpacity 
-                        style={[styles.tabbarItem, indexScreen === index ? styles.activeItem : styles.deactiveItem]}
-                        onPress={() => this.onGoScreen(screen, {})}>
-                        <Text style={indexScreen === index ? styles.activeTxtItem : styles.deactiveTxtItem}>{screen}</Text>
-                    </TouchableOpacity>
-                ))
-            }
-        </View>
-    )
+// class Navigator extends Component {
+//     constructor(props) {
+//         super(props)
+//         this.state = {
+//             screen: 'Home',
+//             param: null,
+//             title: '',
+//             popup: {
+//                 image: null,
+//             }
+//         }
+//     }
 
+//     screens = ['Home', 'City', 'DetailScreen']
+//     tabbarScreen = ['Home', 'City']
+//     stackScreens = ['Home']
+
+//     onGoScreen = (screen, param) => {
+//         this.stackScreens.push(screen)
+//         this.setState({
+//             screen: screen,
+//             param: param
+//         })
+//     }
+//     onBackScreen = () => {
+//         this.stackScreens.pop()
+//         this.setState({screen: this.stackScreens[this.stackScreens.length - 1]})
+//     }
+
+//     onShowPopup = (image) => {
+//         this.setState({
+//             popup: {
+//                 image: image,
+//             }
+//         })
+//         // this.setState(prevState => ({
+//         //     popup: {
+//         //         ...prevState.popup,
+//         //         image: image
+//         //     }
+//         // }))
+//     }
+
+<<<<<<< HEAD
     _renderContentView = (index, param) => {
         switch(index) {
             case 0: return (
@@ -109,33 +110,87 @@ class Navigator extends Component {
                 />)
         }  
     }
+=======
+//     _renderHeader = (index) => (
+//         <View style={styles.header}>
+//             { 
+//                 index >= this.tabbarScreen.length
+//                 ?
+//                 <TouchableOpacity onPress={() => this.onBackScreen()}>
+//                     <Icon name="angle-left" size={24} color="black" /> 
+//                 </TouchableOpacity>
+//                 :
+//                 <View/>
+//             }
+//             <Text style={styles.txtHeader}>{this.state.title}</Text>
+//             <View/>
+//         </View>
+//     )
+>>>>>>> e9bd2bc164f60a490e72062f88bc89deaf8ecd59
 
-    _renderPopup = () => {
-        const {image} = this.state.popup
-        if (image != null) {
-            return (
-                <Popup 
-                    imgeCity={image}
-                    onPress={() => this.onShowPopup(null)}
-                />
-            )
-        }
-    }
+//     _renderTabbarBottom = (indexScreen) => (
+//         <View style={indexScreen >= this.tabbarScreen.length ? styles.hideTabbar : styles.tabbar}>
+//             {
+//                 this.tabbarScreen.map((screen, index) => (
+//                     <TouchableOpacity 
+//                         style={[styles.tabbarItem, indexScreen === index ? styles.activeItem : styles.deactiveItem]}
+//                         onPress={() => this.onGoScreen(screen, {})}>
+//                         <Text style={indexScreen === index ? styles.activeTxtItem : styles.deactiveTxtItem}>{screen}</Text>
+//                     </TouchableOpacity>
+//                 ))
+//             }
+//         </View>
+//     )
 
-    render() {
-        const {screen, param} = this.state
-        let index = this.screens.indexOf(screen)
+//     _renderContentView = (index, param) => {
+//         switch(index) {
+//             case 0: return (
+//                 <Home 
+//                     param={data} 
+//                     title={(title) => this.setState({title: title})}
+//                     goScreen={(screen, param) => this.onGoScreen(screen, param)}
+//                 />)
+//             case 1: return (
+//                 <Cities 
+//                     param={data} 
+//                     title={(title) => this.setState({title: title})}
+//                     goScreen={(screen, param) => this.onGoScreen(screen, param)}
+//                 />)
+//             case 2: return (
+//                 <DetailCity 
+//                     title={(title) => this.setState({title: title})}
+//                     param={param}
+//                     onShowPopup={(image) => this.onShowPopup(image)}
+//                 />)
+//         }  
+//     }
 
-        return (
-            <SafeAreaView style={styles.container}>
-                {this._renderHeader(index)}
-                {this._renderContentView(index, param)}
-                {this._renderTabbarBottom(index)}
-                {this._renderPopup()}
-            </SafeAreaView>
-        )
-    }
-}
+//     _renderPopup = () => {
+//         const {image} = this.state.popup
+//         if (image != null) {
+//             return (
+//                 <Popup 
+//                     imgeCity={image}
+//                     onPress={() => this.onShowPopup(null)}
+//                 />
+//             )
+//         }
+//     }
+
+//     render() {
+//         const {screen, param} = this.state
+//         let index = this.screens.indexOf(screen)
+
+//         return (
+//             <SafeAreaView style={styles.container}>
+//                 {this._renderHeader(index)}
+//                 {this._renderContentView(index, param)}
+//                 {this._renderTabbarBottom(index)}
+//                 {this._renderPopup()}
+//             </SafeAreaView>
+//         )
+//     }
+// }
 
 const data = [
     {
