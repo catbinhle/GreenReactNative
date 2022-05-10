@@ -4,6 +4,8 @@ import styles from "./styles"
 import Home from "../Home/Home"
 import Cities from "../Cities/Cities"
 import DetailCity from "../DetailCity/DetailCity"
+
+//install before when importing library
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import Popup from "../Popup/Popup"
 
