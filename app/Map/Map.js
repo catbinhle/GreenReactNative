@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
 import styles from "./styles"
 import MapView from 'react-native-maps'
 // import Geolocation from '@react-native-community/geolocation'
-
+//////////
 const Map = ({param, setTitle, goScreen}) => {
     useEffect(() => {
         setTitle('Map')
