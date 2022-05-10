@@ -17,76 +17,73 @@ const Tab = createBottomTabNavigator()
 
 const HomeStackScreen = () => (
     <HomeStack.Navigator
-    screenOptions={{
-        headerStyle: {
-          backgroundColor: '#7f5bc7',
-        },
-        headerTintColor: 'white',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-        headerBackTitle: ''
-      }}
+        screenOptions={{
+            headerStyle: {
+                backgroundColor: '#7f5bc7',
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+            headerBackTitle: ''
+        }}
     >
-      <HomeStack.Screen name="Home" component={Home} />
-      <HomeStack.Screen 
-        name="DetailCity" 
-        component={DetailCity} 
-        options={({ route }) => ({ title: route.params.name })}
-      />
-      <HomeStack.Screen 
-        name="Map" 
-        component={Map} 
-        options={({ route }) => ({ title: route.params.name })}
-      />
+        <HomeStack.Screen name="Home" component={Home} />
+        <HomeStack.Screen
+            name="DetailCity"
+            component={DetailCity}
+            options={({ route }) => ({ title: route.params.name })}
+        />
+        <HomeStack.Screen
+            name="Map"
+            component={Map}
+            options={({ route }) => ({ title: route.params.name })}
+        />
     </HomeStack.Navigator>
 )
 
 const ToursStackScreen = () => (
     <ToursStack.Navigator>
-      <HomeStack.Screen name="Tours" component={Cities} />
+        <HomeStack.Screen name="Tours" component={Cities} />
     </ToursStack.Navigator>
 )
 
+const tabsScreen = () => (
+    <Tab.Navigator
+        screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+
+                if (route.name === 'Home') {
+                    iconName = 'home'
+                    // iconName = focused
+                    //   ? 'ios-information-circle'
+                    //   : 'ios-information-circle-outline';
+                } else {
+                    iconName = 'route'
+                    // iconName = focused ? 'ios-list-box' : 'ios-list';
+                }
+                return <Icon name={iconName} size={size} color={color} />;
+                // return <Image style={{height: 24, width: 24, resizeMode: 'cover'}} source={require('../../assets/tours.png')}/>
+            },
+            tabBarActiveTintColor: 'white',
+            tabBarInactiveTintColor: '#81898a',
+            size: 24,
+            headerShown: false,
+            tabBarStyle: {
+                backgroundColor: '#7f5bc7'
+            }
+        })}
+    >
+        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="Tours" component={ToursStackScreen} />
+    </Tab.Navigator>
+)
 
 const Navigator = () => {
     return (
         <NavigationContainer>
-            {/* <Stack.Navigator>
-                <Stack.Screen name="Home" component={Home}/>
-                <Stack.Screen name="Detail" component={DetailCity}/>
-            </Stack.Navigator> */}
-            <Tab.Navigator
-                screenOptions={({ route }) => ({
-                    tabBarIcon: ({ focused, color, size }) => {
-                      let iconName;
-          
-                      if (route.name === 'Home') {
-                          iconName = 'home'
-                        // iconName = focused
-                        //   ? 'ios-information-circle'
-                        //   : 'ios-information-circle-outline';
-                      } else {
-                          iconName = 'route'
-                        // iconName = focused ? 'ios-list-box' : 'ios-list';
-                      }
-          
-                      // You can return any component that you like here!
-                      return <Icon name={iconName} size={size} color={color} />;
-                    // return <Image style={{height: 24, width: 24, resizeMode: 'cover'}} source={require('../../assets/tours.png')}/>
-                    },
-                    tabBarActiveTintColor: 'white',
-                    tabBarInactiveTintColor: '#81898a',
-                    size: 24,
-                    headerShown: false,
-                    tabBarStyle: {
-                        backgroundColor: '#7f5bc7'
-                    }
-                  })}
-            >
-                <Tab.Screen name="Home" component={HomeStackScreen} />
-                <Tab.Screen name="Tours" component= {ToursStackScreen} />
-            </Tab.Navigator>
+            {tabsScreen()}
         </NavigationContainer>
     )
 }
