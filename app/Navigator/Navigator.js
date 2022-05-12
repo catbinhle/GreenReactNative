@@ -29,7 +29,7 @@ const HomeStackScreen = () => (
             headerTitleStyle: {
                 fontWeight: 'bold',
             },
-            headerBackTitle: ''
+            // headerBackTitle: ''
         }}
     >
         <HomeStack.Screen name="Home" component={Home} />
