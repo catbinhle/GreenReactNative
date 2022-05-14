@@ -88,7 +88,7 @@ const Navigator = () => {
     return (
         <NavigationContainer>
             {tabsScreen()}
-        </NavigationContainer>
+        </NavigationContainer> 
     )
 }
 
