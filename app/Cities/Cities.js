@@ -40,7 +40,7 @@ class Cities extends Component {
         const {param} = this.props
         return (
             <View style={{ flex: 1 }}>
-                <FlatList
+                <FlatListda
                     showsVerticalScrollIndicator={false}
                     data={param}
                     renderItem={this._renderItem}
