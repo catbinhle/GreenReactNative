@@ -1,10 +1,16 @@
-import Navigator from './app/Navigator/Navigator'
-import { LogBox } from 'react-native'
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import BottomTabNavigator from './navigation/BottomTabNavigator';
 
-export default function App() {
-  LogBox.ignoreAllLogs()
-  LogBox.ignoreLogs(['Warning: ...'])
+const App = () => {
   return (
-    <Navigator/>
-  )
-}
+    <NavigationContainer>
+      <BottomTabNavigator />
+    </NavigationContainer>
+  );
+};
+
+export default App;
+
+const styles = StyleSheet.create({});
