@@ -2,47 +2,46 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
-  FlatList,
   Dimensions,
   TouchableOpacity,
   ScrollView,
   Button,
-} from 'react-native';
-import React, {useState} from 'react';
-import ShowMore from '../components/ShowMore';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import MapView from 'react-native-maps';
-import {Marker} from 'react-native-maps';
-import IMAGES from '../shared/images';
-import ImageScroll from '../components/ImageScroll';
+} from "react-native";
+import React, { useState } from "react";
+import ShowMore from "../components/ShowMore";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Entypo from "react-native-vector-icons/Entypo";
+import MapView from "react-native-maps";
+import { Marker } from "react-native-maps";
+import ImageScroll from "../components/ImageScroll";
 
-const {width, height} = Dimensions.get('screen');
+const { width, height } = Dimensions.get("screen");
 
-const Details = props => {
-
-  const {route, navigation} = props;
-  const {item, index} = route.params;
+const Details = (props) => {
+  const { route, navigation } = props;
+  const { item, index } = route.params;
   const [showMore, setShowMore] = useState(false);
 
   return (
     <ScrollView>
       <View style={styles.container}>
-        <ImageScroll data_images={item.pics}/>
+        <ImageScroll data_images={item.pics} />
         <View style={styles.titleContainer}>
           <Text style={styles.titleStyle}>Giới thiệu</Text>
         </View>
         <View style={styles.txtContainer}>
           <View>
-            <Text style={{fontSize: 15, textAlign: 'justify', lineHeight: 25}}>
+            <Text
+              style={{ fontSize: 15, textAlign: "justify", lineHeight: 25 }}
+            >
               {item.description.slice(0, 250)}
             </Text>
           </View>
           <TouchableOpacity
-            style={{position: 'absolute', bottom: 5, right: 10}}
-            onPress={() => setShowMore(true)}>
+            style={{ position: "absolute", bottom: 5, right: 10 }}
+            onPress={() => setShowMore(true)}
+          >
             <Text style={styles.btnShowMore}>Xem thêm</Text>
           </TouchableOpacity>
         </View>
@@ -57,7 +56,7 @@ const Details = props => {
           <Text style={styles.titleStyle}>Các tiện nghi</Text>
         </View>
         <View style={styles.txtContainer}>
-          <View style={{flex: 1}}>
+          <View style={{ flex: 1 }}>
             <View style={styles.rowStyle}>
               <MaterialIcons
                 style={styles.iconStyle}
@@ -111,7 +110,7 @@ const Details = props => {
           <Text style={styles.titleStyle}>Vị trí và các thông tin khác</Text>
         </View>
         <View style={styles.txtContainer}>
-          <View style={{flex: 1}}>
+          <View style={{ flex: 1 }}>
             <View style={styles.rowStyle}>
               <MaterialIcons
                 style={styles.iconStyle}
@@ -130,7 +129,7 @@ const Details = props => {
                 size={24}
                 color="black"
               />
-              <Text style={{fontSize: 18, color: 'blue'}}>{item.phone}</Text>
+              <Text style={{ fontSize: 18, color: "blue" }}>{item.phone}</Text>
             </View>
 
             {/* Bản đồ vị trị  */}
@@ -144,7 +143,8 @@ const Details = props => {
               zoomEnable={true}
               showsUserLocation={true}
               followUserLocation={true}
-              style={{marginVertical: 10, width: width, height: height * 0.5}}>
+              style={{ marginVertical: 10, width: width, height: height * 0.5 }}
+            >
               <Marker
                 coordinate={{
                   latitude: item.latitude,
@@ -153,7 +153,7 @@ const Details = props => {
               />
             </MapView>
             <Button
-              onPress={() => navigation.navigate('Booking',item)}
+              onPress={() => navigation.navigate("Booking", item)}
               title="ĐẶT PHÒNG"
             />
           </View>
@@ -170,32 +170,32 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   titleContainer: {
-    backgroundColor: '#000000aa',
+    backgroundColor: "#000000aa",
     marginTop: 5,
   },
   titleStyle: {
-    textTransform: 'uppercase',
-    fontWeight: 'bold',
+    textTransform: "uppercase",
+    fontWeight: "bold",
     fontSize: 18,
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
   },
   txtContainer: {
     paddingHorizontal: 8,
     paddingVertical: 5,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderBottomWidth: 1,
-    borderColor: 'lightgrey',
-    flexDirection: 'row',
+    borderColor: "lightgrey",
+    flexDirection: "row",
   },
   btnShowMore: {
-    color: 'blue',
+    color: "blue",
   },
   iconStyle: {
     marginRight: 10,
   },
   rowStyle: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

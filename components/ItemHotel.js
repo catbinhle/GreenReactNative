@@ -1,11 +1,11 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Entypo from 'react-native-vector-icons/Entypo';
-const ItemHotel = props => {
-  const {item, index} = props;
-  const {navigate} = useNavigation();
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import Entypo from "react-native-vector-icons/Entypo";
+const ItemHotel = (props) => {
+  const { item, index } = props;
+  const { navigate } = useNavigation();
   return (
     <View style={styles.contentContainer}>
       <View style={styles.imageContainer}>
@@ -13,13 +13,13 @@ const ItemHotel = props => {
       </View>
       <View style={styles.txtContainer}>
         <Text>{item.name}</Text>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{ flexDirection: "row" }}>
           {[1, 2, 3, 4, 5].map((number, index) => {
             return (
               <AntDesign
                 key={index.toString()}
                 name="star"
-                color={number <= item.rating ? 'red' : 'gray'}
+                color={number <= item.rating ? "red" : "gray"}
               />
             );
           })}
@@ -27,8 +27,9 @@ const ItemHotel = props => {
         <Text>{item.sub_name}</Text>
       </View>
       <TouchableOpacity
-        onPress={() => navigate('Details', {item, index})}
-        style={{backgroundColor: '#0AA1DD', borderRadius: 25}}>
+        onPress={() => navigate("Details", { item, index })}
+        style={{ backgroundColor: "#0AA1DD", borderRadius: 25 }}
+      >
         <Entypo name="chevron-right" size={23} color="white" />
       </TouchableOpacity>
     </View>
@@ -39,11 +40,11 @@ export default ItemHotel;
 
 const styles = StyleSheet.create({
   contentContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     borderTopLeftRadius: 25,
     borderBottomLeftRadius: 25,
-    alignItems: 'center',
-    backgroundColor: '#F9F3EE',
+    alignItems: "center",
+    backgroundColor: "#F9F3EE",
     elevation: 3,
     padding: 5,
     marginTop: 5,

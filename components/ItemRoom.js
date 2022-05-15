@@ -1,8 +1,7 @@
 import {StyleSheet, Text, View, TouchableOpacity, Button} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const ItemRoom = props => {
   const {item, index} = props;

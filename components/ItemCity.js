@@ -5,21 +5,23 @@ import {
   Image,
   Dimensions,
   FlatList,
-} from 'react-native';
-import React from 'react';
-import ItemHotel from './ItemHotel';
+} from "react-native";
+import React from "react";
+import ItemHotel from "./ItemHotel";
 
-const {width, height} = Dimensions.get('screen');
+const { width, height } = Dimensions.get("screen");
 
-const Item = props => {
-  const {item, index} = props;
+const ItemCity = (props) => {
+  const { item, index } = props;
 
   return (
     <View style={styles.container}>
-      <Image
-        style={{height: width * 0.8, width: width * 1}}
-        source={item.image}
-      />
+      <View style={{ flex: 1 }}>
+        <Image
+          style={{ height: width * 0.8, width: width * 1 }}
+          source={item.image}
+        />
+      </View>
       <View style={styles.desContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.titleStyle}>{item.name}</Text>
@@ -28,9 +30,11 @@ const Item = props => {
           <FlatList
             showsVerticalScrollIndicator={false}
             data={item.hotels}
-            keyExtractor={item => `${item.id}`}
-            renderItem={({item, index}) => {
-              return <ItemHotel item={item} index={index} />;
+            keyExtractor={(item) => `${item.id}`}
+            renderItem={({ item, index }) => {
+              return (
+                <ItemHotel item={item} index={index} />
+              );
             }}
           />
         </View>
@@ -44,31 +48,31 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   desContainer: {
-    height: '52%',
-    backgroundColor: '#000000aa',
+    width: "100%",
+    height: "60%",
+    backgroundColor: "#000000aa",
     borderTopRightRadius: 15,
     borderTopLeftRadius: 15,
-    top: '-6.8%',
-    marginHorizontal: 10,
+    position: "absolute",
+    bottom: 0,
+    marginBottom: 10,
   },
   titleContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 10,
   },
   titleStyle: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
+    fontWeight: "bold",
+    color: "white",
   },
   listContainer: {
     flex: 12,
-    backgroundColor: 'white',
-    elevation: 2,
-    paddingBottom: 5,
+    backgroundColor: "white",
+    elevation: 3,
     paddingTop: 5,
   },
 });
 
-export default Item;
+export default ItemCity;
