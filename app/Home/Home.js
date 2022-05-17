@@ -1,4 +1,4 @@
-import react, { useState, Component, useEffect } from "react"
+import react, { useState, useEffect } from "react"
 import { View, Text, Image, TouchableOpacity, FlatList, TextInput } from 'react-native'
 import styles from "./styles"
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -10,19 +10,6 @@ const Home = ({param, setTitle, goScreen}) => {
     const [searchData, setSearchData] = useState(param)
     const filterData = (value) => {
         setSearchData(param.filter(item => item.name.includes(value)))
-    }
-
-    state = {
-
-    }
-
-    goScreen = (item) => {
-        // this.props.goScreen('DetailScreen', item)
-        this.props.navigation.navigate('DetailCity', item)
-    }
-
-    componentDidMount() {
-        // this.props.title('Home')
     }
 
     _renderItem = ({item}) => (
@@ -37,33 +24,33 @@ const Home = ({param, setTitle, goScreen}) => {
         </TouchableOpacity>
     )
 
-    render() {
+    render = () => {
         // const {data} = this.props
+        // return (
+        //     <View style={styles.container}>
+        //         <FlatList
+        //             numColumns={2}
+        //             showsVerticalScrollIndicator={false}
+        //             data={data}
+        //             renderItem={this._renderItem}
+        //             keyExtractor={item => item.id}
+        //         />
+        //         <Icon name="search" size={16} color="dark-grey" />
+        //     </View>
+        // )
         return (
             <View style={styles.container}>
+                {_renderSearch()}
                 <FlatList
                     numColumns={2}
                     showsVerticalScrollIndicator={false}
-                    data={data}
-                    renderItem={this._renderItem}
-                    keyExtractor={item => item.id}
+                    data={searchData}
+                    renderItem={_renderItem}
+                    keyExtractor={(item, index) => index.toString()}
                 />
-                <Icon name="search" size={16} color="dark-grey" />
             </View>
         )
     }
-    return (
-        <View style={styles.container}>
-            {_renderSearch()}
-            <FlatList
-                numColumns={2}
-                showsVerticalScrollIndicator={false}
-                data={searchData}
-                renderItem={_renderItem}
-                keyExtractor={(item, index) => index.toString()}
-            />
-        </View>
-    )
 }
 
 const data = [
