@@ -9,6 +9,10 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import Home from "../Home/Home";
 import Tours from "../Tours/Tours";
 import Sharing from "../Sharing/Sharing";
+import Detail from "../Detail/Detail";
+import Service from "../Service/Service";
+import TourTravel from "../TourTravel/TourTravel";
+import sharingInfo from "../Data/Sharing/sharingInfo";
 
 const HomeStack = createNativeStackNavigator()
 const ToursStack = createNativeStackNavigator()
@@ -29,6 +33,16 @@ class Navigator extends Component {
                     name='Home'
                     component={Home}
                 />
+                <HomeStack.Screen
+                    name='Detail'
+                    component={Detail}
+                    options={({route}) => ({title: route.params.name})}
+                />
+                <HomeStack.Screen
+                    name='Service'
+                    component={Service}
+                    options={({route}) => ({title: route.params.name})}
+                  />
             </HomeStack.Navigator>
         )
     }
@@ -38,6 +52,11 @@ class Navigator extends Component {
                 <ToursStack.Screen
                     name='Tours'
                     component={Tours}
+                />
+                <ToursStack.Screen
+                    name='TourTravel'
+                    component={TourTravel}
+                    options={({route}) => ({title: route.params.name})}
                 />
             </ToursStack.Navigator>
         )

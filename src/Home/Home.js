@@ -1,9 +1,9 @@
 import {Component} from "react";
-import {View, Text, Image, Dimensions, ScrollView} from "react-native";
+import {View, Text, Image, Dimensions, ScrollView, TouchableOpacity} from "react-native";
 
 import homeStyles from "./homeStyles";
-import provinces from "../ProvinceAndNews/Province/provinces";
-import news from "../ProvinceAndNews/News/news";
+import provinces from "../Data/Province/provinces";
+import news from "../Data/News/news";
 
 class Home extends Component {
     constructor(props) {
@@ -12,15 +12,23 @@ class Home extends Component {
 
         }
     }
+    _goScreen(province) {
+        this.props.navigation.navigate('Detail', province)
+    }
     _renderProvince(province) {
         return(
-            <View style={homeStyles.province}>
+            <TouchableOpacity
+                style={homeStyles.province}
+                onPress={() => {
+                    return this._goScreen(province)
+                }}
+            >
                 <Image
                     style={homeStyles.image}
                     source={{uri: province.image}}
                 />
                 <Text style={{marginVertical: 8, fontSize: 18}}>{province.name}</Text>
-            </View>
+            </TouchableOpacity>
         )
     }
     _renderNews(news) {
@@ -30,7 +38,7 @@ class Home extends Component {
                     style={homeStyles.image}
                     source={{uri: news.image}}
                 />
-                {/*<Text style={{marginVertical: 8, fontSize: 18}}>{news.name}</Text>*/}
+                <Text style={{marginVertical: 8, fontSize: 16}}>{news.info}</Text>
             </View>
         )
     }
@@ -65,6 +73,7 @@ class Home extends Component {
                         <View>
                             <Text style={{fontWeight: 'bold', fontSize: 21}}>News</Text>
                         </View>
+                        {/*2.4 news*/}
                         <ScrollView horizontal={true}>
                             {
                                 news.map((news) => {

@@ -1,7 +1,8 @@
 class Service {
-    constructor(image, address ) {
+    constructor(image, address, rating) {
         this.image = image
         this.address = address
+        this.rating = rating
     }
 }
 
