@@ -24,7 +24,7 @@ const Details = (props) => {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <ImageScroll data_images={item.pics} />
         <View style={styles.titleContainer}>

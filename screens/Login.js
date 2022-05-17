@@ -2,31 +2,30 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   TouchableOpacity,
   TextInput,
   Button,
-  KeyboardAvoidingView,
 } from "react-native";
 import React, { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+import IconSocial from "../components/IconSocial";
 
 const Login = (props) => {
   const { navigation } = props;
-  const { navigate } = navigation;
+  const { navigate, replace } = navigation;
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isShow, setIsShow] = useState(true);
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-          }}
-        >
-          {/* <Image
+    <View style={styles.container}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+        }}
+      >
+        {/* <Image
           resizeMode="cover"
           style={{ height: 200, width: 200 }}
           source={{
@@ -43,50 +42,75 @@ const Login = (props) => {
           </Text>
         </TouchableOpacity> */}
 
-          {/* username  */}
-          <View style={styles.inputText}>
-            <TextInput
-              placeholder="Username"
-              value={username}
-              onChangeText={(text) => setUsername(text)}
+        {/* username  */}
+        <View style={styles.inputTextContainer}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Username"
+            value={username}
+            onChangeText={(text) => setUsername(text)}
+          />
+        </View>
+        {/* password  */}
+        <View style={styles.inputTextContainer}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Password"
+            secureTextEntry={isShow}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+          <TouchableOpacity onPress={() => setIsShow(!isShow)}>
+            <Ionicons
+              name={isShow ? "eye-off-outline" : "eye-outline"}
+              size={24}
             />
-          </View>
-          {/* password  */}
-          <View style={styles.inputText}>
-            <TextInput
-              style={{ width: "90%" }}
-              placeholder="Password"
-              secureTextEntry={isShow}
-              value={password}
-              onChangeText={(text) => setPassword(text)}
-            />
-            <TouchableOpacity onPress={() => setIsShow(!isShow)}>
-              {isShow ? <Text>Show</Text> : <Text>Hide</Text>}
-            </TouchableOpacity>
-          </View>
+          </TouchableOpacity>
+        </View>
 
-          <View style={{ marginHorizontal: 50 }}>
-            <Button
-              onPress={() => {
-                navigate("ProfileScreen", { screen: "Profile" });
-              }}
-              title="Đăng nhập"
-            />
-          </View>
-          <View style={{ alignItems: "center", marginTop: 10 }}>
-            <TouchableOpacity>
-              <Text style={styles.linkStyle}>Quên mật khẩu ?</Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={styles.linkStyle}>Đăng ký tài khoản mới</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={{ marginHorizontal: 50 }}>
+          <Button
+            onPress={() => {
+              replace("Home");
+            }}
+            title="Đăng nhập"
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            marginVertical: 10,
+          }}
+        >
+          <TouchableOpacity>
+            <Text style={styles.linkStyle}>Quên mật khẩu?</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={[styles.linkStyle, { marginLeft: 5 }]}>
+              Đăng ký tài khoản
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-          <Text>tài khoản : {username}</Text>
-          <Text>mật khẩu : {password}</Text>
+        <View
+          style={{
+            height: 0.5,
+            width: "100%",
+            backgroundColor: "black",
+          }}
+        />
+
+        <Text style={{ alignSelf: "center", marginVertical: 10 }}>
+          Hoặc đăng nhập với
+        </Text>
+        <View style={{ flexDirection: "row", alignSelf: "center" }}>
+          <IconSocial nameIcon="facebook" color="#4267B2" />
+          <IconSocial nameIcon="google" color="#DB4437" />
+          <IconSocial nameIcon="twitter" color="#1DA1F2" />
         </View>
       </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
@@ -96,8 +120,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  inputText: {
-    backgroundColor: "lightgray",
+  inputTextContainer: {
+    backgroundColor: "white",
     marginHorizontal: 15,
     borderRadius: 10,
     justifyContent: "center",
@@ -106,9 +130,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    elevation: 3,
   },
   linkStyle: {
     textDecorationLine: "underline",
-    marginTop: 5,
+    color: "blue",
+    fontStyle: "italic",
   },
+  inputText: {
+    flex: 1,
+  },
+  iconContainer: {},
 });

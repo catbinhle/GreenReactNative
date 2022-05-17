@@ -20,7 +20,7 @@ const Profile = (props) => {
             <CustomButton
               iconName="logout"
               title="Thoát tài khoản"
-              onPress={() => navigate("ProfileScreen", { screen: "Login" })}
+              onPress={() => replace("Login")}
             />
           </View>
         </View>

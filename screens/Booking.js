@@ -24,7 +24,11 @@ const Booking = (props) => {
   });
 
   return (
-    <ScrollView nestedScrollEnabled style={styles.container}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      nestedScrollEnabled
+      style={styles.container}
+    >
       <View style={styles.imageContainer}>
         <ImageScroll data_images={room_pics} />
       </View>
@@ -89,7 +93,7 @@ const styles = StyleSheet.create({
   calendarContainer: {
     flexDirection: "row",
     marginHorizontal: 10,
-    marginVertical: 10,
+    marginVertical: 15,
     elevation: 3,
     backgroundColor: "white",
     borderWidth: StyleSheet.hairlineWidth,
