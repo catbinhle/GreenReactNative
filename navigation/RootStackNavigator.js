@@ -6,7 +6,10 @@ const Stack = createNativeStackNavigator();
 
 const HomeStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerTitleAlign: "center" }}>
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{ headerTitleAlign: "center" }}
+    >
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen
         name="Details"
@@ -21,17 +24,18 @@ const HomeStackNavigator = () => {
 const ProfileStackNavigator = () => {
   return (
     <Stack.Navigator
+      initialRouteName="Login"
       screenOptions={{
         headerTitleAlign: "center",
         // headerShown: false,
       }}
     >
+      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen
         options={{ headerShown: false }}
         name="Profile"
         component={Profile}
       />
-      <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
   );
 };
