@@ -14,7 +14,8 @@ import moment from "moment";
 import CalendarView from "../components/CalendarView";
 
 const Booking = (props) => {
-  const { route } = props;
+  const { navigation, route } = props;
+  const { navigate } = navigation;
   const { type_room, room_pics } = route.params;
   const [isShow, setIsShow] = useState(false);
   const currentDate = moment().format("YYYY-MM-DD");
@@ -22,6 +23,21 @@ const Booking = (props) => {
     firstDate: moment(currentDate).format("DD-MM-YYYY"),
     secondDate: moment(currentDate).add(1, "days").format("DD-MM-YYYY"),
   });
+
+  const [cartItemsArray, setCartItemsArray] = useState([]);
+
+  const onAddCart = (item) => {
+    const exist = cartItemsArray.find((x) => x.id === item.id);
+    if (!exist) {
+      setCartItemsArray((prevState) => [...prevState, { ...item, qty: 1 }]);
+    } else {
+      setCartItemsArray(
+        cartItemsArray.map((x) =>
+          x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    }
+  };
 
   return (
     <ScrollView
@@ -34,7 +50,14 @@ const Booking = (props) => {
       </View>
       <View style={styles.infoContainer}>
         {type_room.map((item, index) => {
-          return <ItemRoom key={index} index={index} item={item} />;
+          return (
+            <ItemRoom
+              key={index}
+              index={index}
+              item={item}
+              onPress={() => onAddCart(item)}
+            />
+          );
         })}
 
         {/* Tùy chỉnh lịch */}
@@ -70,7 +93,15 @@ const Booking = (props) => {
 
         {/* Button Book phòng */}
         <View style={{ marginHorizontal: 10, marginBottom: 10 }}>
-          <Button title="Đặt ngay hôm nay" />
+          <Button
+            onPress={() =>
+              navigate("Cart", {
+                cartItemsArray: cartItemsArray,
+                selectedRange: selectedRange,
+              })
+            }
+            title="Đặt ngay hôm nay"
+          />
         </View>
       </View>
     </ScrollView>

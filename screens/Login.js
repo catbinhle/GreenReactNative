@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
+  Image,
 } from "react-native";
 import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -22,26 +23,26 @@ const Login = (props) => {
       <View
         style={{
           flex: 1,
+          alignItems: "center",
           justifyContent: "center",
+          padding: 10,
+          marginVertical: 20,
         }}
       >
-        {/* <Image
+        <Image
           resizeMode="cover"
-          style={{ height: 200, width: 200 }}
+          style={{
+            height: 150,
+            width: 150,
+            borderRadius: 30,
+          }}
           source={{
-            uri: "https://static.vecteezy.com/system/resources/previews/004/759/846/large_2x/cute-panda-with-helmet-and-roadblock-free-vector.jpg",
+            uri: "https://www.agoria.be/sites/default/files/images/2020-12/logomakr.png",
           }}
         />
-        <Text>Xin lỗi quý khách , hiện tại ứng dụng đang bảo trì</Text>
-        <Text>Vui lòng quay lại sau</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("HomeScreen", { screen: "Booking" })}
-        >
-          <Text style={{ color: "blue", marginTop: 20 }}>
-            Quay lại trang Home
-          </Text>
-        </TouchableOpacity> */}
+      </View>
 
+      <View style={{ flex: 3 }}>
         {/* username  */}
         <View style={styles.inputTextContainer}>
           <TextInput
@@ -68,7 +69,7 @@ const Login = (props) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{ marginHorizontal: 50 }}>
+        <View style={{ marginHorizontal: 15 }}>
           <Button
             onPress={() => {
               replace("Home");
@@ -80,34 +81,30 @@ const Login = (props) => {
           style={{
             flexDirection: "row",
             justifyContent: "center",
-            marginVertical: 10,
+            marginVertical: 15,
           }}
         >
+          {/* Quên mật khẩu */}
           <TouchableOpacity>
             <Text style={styles.linkStyle}>Quên mật khẩu?</Text>
           </TouchableOpacity>
+
+          {/* Đăng ký tài khoản */}
           <TouchableOpacity>
             <Text style={[styles.linkStyle, { marginLeft: 5 }]}>
               Đăng ký tài khoản
             </Text>
           </TouchableOpacity>
         </View>
-
-        <View
-          style={{
-            height: 0.5,
-            width: "100%",
-            backgroundColor: "black",
-          }}
-        />
-
-        <Text style={{ alignSelf: "center", marginVertical: 10 }}>
-          Hoặc đăng nhập với
-        </Text>
-        <View style={{ flexDirection: "row", alignSelf: "center" }}>
-          <IconSocial nameIcon="facebook" color="#4267B2" />
-          <IconSocial nameIcon="google" color="#DB4437" />
-          <IconSocial nameIcon="twitter" color="#1DA1F2" />
+        <View style={{}}>
+          <Text style={{ alignSelf: "center", marginVertical: 10 }}>
+            Hoặc đăng nhập với
+          </Text>
+          <View style={{ flexDirection: "row", alignSelf: "center" }}>
+            <IconSocial nameIcon="facebook" color="#4267B2" />
+            <IconSocial nameIcon="google" color="#DB4437" />
+            <IconSocial nameIcon="twitter" color="#1DA1F2" />
+          </View>
         </View>
       </View>
     </View>
@@ -119,6 +116,7 @@ export default Login;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
   },
   inputTextContainer: {
     backgroundColor: "white",

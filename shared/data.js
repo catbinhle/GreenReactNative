@@ -36,18 +36,21 @@ const data = [
         ],
         type_room: [
           {
+            id: 1,
             name: "Phòng A",
             price: 2555251,
             bed: "2 giường đơn",
             area: "40 mét vuông",
           },
           {
+            id: 2,
             name: "Phòng B",
             price: 2788904,
             bed: "1 giường đôi lớn",
             area: "40 mét vuông",
           },
           {
+            id: 3,
             name: "Phòng C",
             price: 4555251,
             bed: "2 giường đôi lớn",
