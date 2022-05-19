@@ -1,4 +1,4 @@
-import react, { Component } from "react"
+import React, { Component } from "react"
 import { View, Text, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import styles from "./styles"
 
@@ -14,26 +14,29 @@ class DetailCity extends Component {
     _renderItem = ({item}) => (
         <TouchableOpacity 
             style={styles.item}
-            onPress={() => this.props.onShowPopup(item?.image)}
+            onPress={() => {
+                //this.props.onShowPopup(item?.image)
+                this.props.navigation.navigate('Map',item)
+            }}
             >
             <Image style={styles.imgItem} source={{uri: item?.image}}/>
         </TouchableOpacity>
     )
 
     componentDidMount() {
-        const {name} = this.props.param
-        this.props.title(name)
+        // const {name} = this.props.param
+        // this.props.title(name)
     }
 
     render() {
-        const {param} = this.props
+        let {params} = this.props.route
         return (
             <View style={{flex: 1}}>
                 <ScrollView style={styles.container}>
-                    <Image style={styles.image} source={{uri: param?.image}}/>
+                    <Image style={styles.image} source={{uri: params?.image}}/>
                     <View style={{paddingHorizontal: 16}}>
-                        <Text style={{fontSize: 14}}>{param?.desc}</Text>
-                        <Text style={{fontSize: 16, fontWeight: '700', paddingTop: 16}}>{'Some images of ' + param?.name}</Text>
+                        <Text style={{fontSize: 14}}>{params?.desc}</Text>
+                        <Text style={{fontSize: 16, fontWeight: '700', paddingTop: 16}}>{'Some images of ' + params?.name}</Text>
                         <FlatList
                             numColumns={2}
                             data={data}

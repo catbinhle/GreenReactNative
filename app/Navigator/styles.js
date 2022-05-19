@@ -1,5 +1,4 @@
 import { StyleSheet, Dimensions } from "react-native"
-import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes"
 
 const Styles = StyleSheet.create({
     container: {

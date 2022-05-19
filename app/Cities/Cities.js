@@ -1,4 +1,4 @@
-import react, { Component } from "react"
+import React, { Component } from "react"
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
 import styles from "./styles"
 import Popup from "../Popup/Popup"
@@ -33,7 +33,7 @@ class Cities extends Component {
     )
 
     componentDidMount() {
-        this.props.title('Cities')
+        // this.props.title('Cities')
     }
 
     render() {

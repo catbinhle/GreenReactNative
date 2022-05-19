@@ -1,134 +1,233 @@
-import react, {Component} from "react"
-import {View, Text, TouchableOpacity, SafeAreaView} from 'react-native'
+import React, { Component } from "react"
+import { View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'
 import styles from "./styles"
 import Home from "../Home/Home"
 import Cities from "../Cities/Cities"
 import DetailCity from "../DetailCity/DetailCity"
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import Popup from "../Popup/Popup"
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Map from "../Map/Map"
 
-class Navigator extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            screen: 'Home',
-            param: null,
-            title: '',
-            popup: {
-                image: null,
+const HomeStack = createNativeStackNavigator()
+const ToursStack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator()
+
+const HomeStackScreen = () => (
+    <HomeStack.Navigator
+        screenOptions={{
+            headerStyle: {
+                backgroundColor: '#7f5bc7',
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+            headerBackTitle: ''
+            // header: ({route}) => (
+            //     <View style={{
+            //         // display: 'flex',
+            //         flexDirection: 'row',
+            //         justifyContent: 'space-between',
+            //         alignItems: 'center',
+            //         height: 50,
+            //         borderBottomWidth: 0.5,
+            //         borderColor: 'grey'
+            //       }}>
+            //         <View/>
+            //         <Text style={{
+            //               fontWeight: 'bold', 
+            //               fontSize: 18
+            //         }}>{route?.params?.name ? route?.params?.name :route?.name}</Text>
+            //         <View/>
+            //       </View>
+            // )
+        }}
+    >
+        <HomeStack.Screen name="Home" component={Home} />
+        <HomeStack.Screen
+            name="DetailCity"
+            component={DetailCity}
+            options={({ route }) => ({ title: route.params.name })}
+        />
+        <HomeStack.Screen
+            name="Map"
+            component={Map}
+            options={({ route }) => ({ title: route.params.name })}
+        />
+    </HomeStack.Navigator>
+)
+
+const ToursStackScreen = () => (
+    <ToursStack.Navigator>
+        <HomeStack.Screen name="Tours" component={Cities} />
+    </ToursStack.Navigator>
+)
+
+const tabsScreen = () => (
+    <Tab.Navigator
+        screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+
+                if (route.name === 'Home') {
+                    iconName = 'home'
+                    // iconName = focused
+                    //   ? 'ios-information-circle'
+                    //   : 'ios-information-circle-outline';
+                } else {
+                    iconName = 'route'
+                    // iconName = focused ? 'ios-list-box' : 'ios-list';
+                }
+                return <Icon name={iconName} size={size} color={color} />;
+                // return <Image style={{height: 24, width: 24, resizeMode: 'cover'}} source={require('../../assets/tours.png')}/>
+            },
+            tabBarActiveTintColor: 'white',
+            tabBarInactiveTintColor: '#81898a',
+            size: 24,
+            headerShown: false,
+            tabBarStyle: {
+                backgroundColor: '#7f5bc7'
             }
-        }
-    }
+        })}
+    >
+        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="Tours" component={ToursStackScreen} />
+    </Tab.Navigator>
+)
 
-    screens = ['Home', 'City', 'DetailScreen']
-    tabbarScreen = ['Home', 'City']
-    stackScreens = ['Home']
-
-    onGoScreen = (screen, param) => {
-        this.stackScreens.push(screen)
-        this.setState({
-            screen: screen,
-            param: param
-        })
-    }
-    onBackScreen = () => {
-        this.stackScreens.pop()
-        this.setState({screen: this.stackScreens[this.stackScreens.length - 1]})
-    }
-
-    onShowPopup = (image) => {
-        this.setState({
-            popup: {
-                image: image,
-            }
-        })
-        // this.setState(prevState => ({
-        //     popup: {
-        //         ...prevState.popup,
-        //         image: image
-        //     }
-        // }))
-    }
-
-    _renderHeader = (index) => (
-        <View style={styles.header}>
-            { 
-                index >= this.tabbarScreen.length
-                ?
-                <TouchableOpacity onPress={() => this.onBackScreen()}>
-                    <Icon name="angle-left" size={24} color="black" /> 
-                </TouchableOpacity>
-                :
-                <View/>
-            }
-            <Text style={styles.txtHeader}>{this.state.title}</Text>
-            <View/>
-        </View>
+const Navigator = () => {
+    return (
+        <NavigationContainer>
+            {tabsScreen()}
+        </NavigationContainer>
     )
-
-    _renderTabbarBottom = (indexScreen) => (
-        <View style={indexScreen >= this.tabbarScreen.length ? styles.hideTabbar : styles.tabbar}>
-            {
-                this.tabbarScreen.map((screen, index) => (
-                    <TouchableOpacity 
-                        style={[styles.tabbarItem, indexScreen === index ? styles.activeItem : styles.deactiveItem]}
-                        onPress={() => this.onGoScreen(screen, {})}>
-                        <Text style={indexScreen === index ? styles.activeTxtItem : styles.deactiveTxtItem}>{screen}</Text>
-                    </TouchableOpacity>
-                ))
-            }
-        </View>
-    )
-
-    _renderContentView = (index, param) => {
-        switch(index) {
-            case 0: return (
-                <Home 
-                    param={data} 
-                    title={(title) => this.setState({title: title})}
-                    goScreen={(screen, param) => this.onGoScreen(screen, param)}
-                />)
-            case 1: return (
-                <Cities 
-                    param={data} 
-                    title={(title) => this.setState({title: title})}
-                    goScreen={(screen, param) => this.onGoScreen(screen, param)}
-                />)
-            case 2: return (
-                <DetailCity 
-                    title={(title) => this.setState({title: title})}
-                    param={param}
-                    onShowPopup={(image) => this.onShowPopup(image)}
-                />)
-        }  
-    }
-
-    _renderPopup = () => {
-        const {image} = this.state.popup
-        if (image != null) {
-            return (
-                <Popup 
-                    imgeCity={image}
-                    onPress={() => this.onShowPopup(null)}
-                />
-            )
-        }
-    }
-
-    render() {
-        const {screen, param} = this.state
-        let index = this.screens.indexOf(screen)
-
-        return (
-            <SafeAreaView style={styles.container}>
-                {this._renderHeader(index)}
-                {this._renderContentView(index, param)}
-                {this._renderTabbarBottom(index)}
-                {this._renderPopup()}
-            </SafeAreaView>
-        )
-    }
 }
+
+// class Navigator extends Component {
+//     constructor(props) {
+//         super(props)
+//         this.state = {
+//             screen: 'Home',
+//             param: null,
+//             title: '',
+//             popup: {
+//                 image: null,
+//             }
+//         }
+//     }
+
+//     screens = ['Home', 'City', 'DetailScreen']
+//     tabbarScreen = ['Home', 'City']
+//     stackScreens = ['Home']
+
+//     onGoScreen = (screen, param) => {
+//         this.stackScreens.push(screen)
+//         this.setState({
+//             screen: screen,
+//             param: param
+//         })
+//     }
+//     onBackScreen = () => {
+//         this.stackScreens.pop()
+//         this.setState({screen: this.stackScreens[this.stackScreens.length - 1]})
+//     }
+
+//     onShowPopup = (image) => {
+//         this.setState({
+//             popup: {
+//                 image: image,
+//             }
+//         })
+//         // this.setState(prevState => ({
+//         //     popup: {
+//         //         ...prevState.popup,
+//         //         image: image
+//         //     }
+//         // }))
+//     }
+
+//     _renderHeader = (index) => (
+//         <View style={styles.header}>
+//             { 
+//                 index >= this.tabbarScreen.length
+//                 ?
+//                 <TouchableOpacity onPress={() => this.onBackScreen()}>
+//                     <Icon name="angle-left" size={24} color="black" /> 
+//                 </TouchableOpacity>
+//                 :
+//                 <View/>
+//             }
+//             <Text style={styles.txtHeader}>{this.state.title}</Text>
+//             <View/>
+//         </View>
+//     )
+
+//     _renderTabbarBottom = (indexScreen) => (
+//         <View style={indexScreen >= this.tabbarScreen.length ? styles.hideTabbar : styles.tabbar}>
+//             {
+//                 this.tabbarScreen.map((screen, index) => (
+//                     <TouchableOpacity 
+//                         style={[styles.tabbarItem, indexScreen === index ? styles.activeItem : styles.deactiveItem]}
+//                         onPress={() => this.onGoScreen(screen, {})}>
+//                         <Text style={indexScreen === index ? styles.activeTxtItem : styles.deactiveTxtItem}>{screen}</Text>
+//                     </TouchableOpacity>
+//                 ))
+//             }
+//         </View>
+//     )
+
+//     _renderContentView = (index, param) => {
+//         switch(index) {
+//             case 0: return (
+//                 <Home 
+//                     param={data} 
+//                     title={(title) => this.setState({title: title})}
+//                     goScreen={(screen, param) => this.onGoScreen(screen, param)}
+//                 />)
+//             case 1: return (
+//                 <Cities 
+//                     param={data} 
+//                     title={(title) => this.setState({title: title})}
+//                     goScreen={(screen, param) => this.onGoScreen(screen, param)}
+//                 />)
+//             case 2: return (
+//                 <DetailCity 
+//                     title={(title) => this.setState({title: title})}
+//                     param={param}
+//                     onShowPopup={(image) => this.onShowPopup(image)}
+//                 />)
+//         }  
+//     }
+
+//     _renderPopup = () => {
+//         const {image} = this.state.popup
+//         if (image != null) {
+//             return (
+//                 <Popup 
+//                     imgeCity={image}
+//                     onPress={() => this.onShowPopup(null)}
+//                 />
+//             )
+//         }
+//     }
+
+//     render() {
+//         const {screen, param} = this.state
+//         let index = this.screens.indexOf(screen)
+
+//         return (
+//             <SafeAreaView style={styles.container}>
+//                 {this._renderHeader(index)}
+//                 {this._renderContentView(index, param)}
+//                 {this._renderTabbarBottom(index)}
+//                 {this._renderPopup()}
+//             </SafeAreaView>
+//         )
+//     }
+// }
 
 const data = [
     {
