@@ -10,9 +10,11 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Map from "../Map/Map"
+import Login from "../Login/Login"
 
 const HomeStack = createNativeStackNavigator()
 const ToursStack = createNativeStackNavigator()
+const LoginStack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
 const HomeStackScreen = () => (
@@ -62,8 +64,14 @@ const HomeStackScreen = () => (
 
 const ToursStackScreen = () => (
     <ToursStack.Navigator>
-        <HomeStack.Screen name="Tours" component={Cities} />
+        <ToursStack.Screen name="Tours" component={Cities} />
     </ToursStack.Navigator>
+)
+
+const LoginStackScreen = () => (
+    <LoginStack.Navigator>
+        <LoginStack.Screen name="Login" component={Login} />
+    </LoginStack.Navigator>
 )
 
 const tabsScreen = () => (
@@ -77,9 +85,11 @@ const tabsScreen = () => (
                     // iconName = focused
                     //   ? 'ios-information-circle'
                     //   : 'ios-information-circle-outline';
-                } else {
+                } else if (route.name === 'Tours') {
                     iconName = 'route'
                     // iconName = focused ? 'ios-list-box' : 'ios-list';
+                } else {
+                    iconName = 'user'
                 }
                 return <Icon name={iconName} size={size} color={color} />;
                 // return <Image style={{height: 24, width: 24, resizeMode: 'cover'}} source={require('../../assets/tours.png')}/>
@@ -95,6 +105,7 @@ const tabsScreen = () => (
     >
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="Tours" component={ToursStackScreen} />
+        <Tab.Screen name="Login" component={LoginStackScreen} />
     </Tab.Navigator>
 )
 
