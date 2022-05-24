@@ -1,23 +1,13 @@
-<<<<<<< HEAD
-import react, { Component, useEffect, useState } from "react"
-=======
 import React, { Component, useEffect, useState } from "react"
->>>>>>> 59a0705b6b3872f3473cc577e6ffe3a170031bbd
 import { View, Text, Image, TouchableOpacity, FlatList } from 'react-native'
 import styles from './styles'
 import MapView, {Marker} from 'react-native-maps'
 // import Geolocation from '@react-native-community/geolocation'
 
 const Map = ({param, setTitle, goScreen}) => {
-<<<<<<< HEAD
-    useEffect(() => {
-        setTitle('Map')
-    },[])
-=======
     // useEffect(() => {
     //     setTitle('Map')
     // },[])
->>>>>>> 59a0705b6b3872f3473cc577e6ffe3a170031bbd
     return (
         <View style={styles.container}>
             <MapView 
