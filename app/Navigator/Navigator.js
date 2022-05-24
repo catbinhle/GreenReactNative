@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import react, { Component } from "react"
+=======
+import React, { Component } from "react"
+>>>>>>> 59a0705b6b3872f3473cc577e6ffe3a170031bbd
 import { View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'
 import styles from "./styles"
 import Home from "../Home/Home"
@@ -10,9 +14,17 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Map from "../Map/Map"
+<<<<<<< HEAD
 
 const HomeStack = createNativeStackNavigator()
 const ToursStack = createNativeStackNavigator()
+=======
+import Login from "../Login/Login"
+
+const HomeStack = createNativeStackNavigator()
+const ToursStack = createNativeStackNavigator()
+const LoginStack = createNativeStackNavigator()
+>>>>>>> 59a0705b6b3872f3473cc577e6ffe3a170031bbd
 const Tab = createBottomTabNavigator()
 
 const HomeStackScreen = () => (
@@ -26,6 +38,27 @@ const HomeStackScreen = () => (
                 fontWeight: 'bold',
             },
             headerBackTitle: ''
+<<<<<<< HEAD
+=======
+            // header: ({route}) => (
+            //     <View style={{
+            //         // display: 'flex',
+            //         flexDirection: 'row',
+            //         justifyContent: 'space-between',
+            //         alignItems: 'center',
+            //         height: 50,
+            //         borderBottomWidth: 0.5,
+            //         borderColor: 'grey'
+            //       }}>
+            //         <View/>
+            //         <Text style={{
+            //               fontWeight: 'bold', 
+            //               fontSize: 18
+            //         }}>{route?.params?.name ? route?.params?.name :route?.name}</Text>
+            //         <View/>
+            //       </View>
+            // )
+>>>>>>> 59a0705b6b3872f3473cc577e6ffe3a170031bbd
         }}
     >
         <HomeStack.Screen name="Home" component={Home} />
@@ -44,10 +77,23 @@ const HomeStackScreen = () => (
 
 const ToursStackScreen = () => (
     <ToursStack.Navigator>
+<<<<<<< HEAD
         <HomeStack.Screen name="Tours" component={Cities} />
     </ToursStack.Navigator>
 )
 
+=======
+        <ToursStack.Screen name="Tours" component={Cities} />
+    </ToursStack.Navigator>
+)
+
+const LoginStackScreen = () => (
+    <LoginStack.Navigator>
+        <LoginStack.Screen name="Login" component={Login} />
+    </LoginStack.Navigator>
+)
+
+>>>>>>> 59a0705b6b3872f3473cc577e6ffe3a170031bbd
 const tabsScreen = () => (
     <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -59,9 +105,17 @@ const tabsScreen = () => (
                     // iconName = focused
                     //   ? 'ios-information-circle'
                     //   : 'ios-information-circle-outline';
+<<<<<<< HEAD
                 } else {
                     iconName = 'route'
                     // iconName = focused ? 'ios-list-box' : 'ios-list';
+=======
+                } else if (route.name === 'Tours') {
+                    iconName = 'route'
+                    // iconName = focused ? 'ios-list-box' : 'ios-list';
+                } else {
+                    iconName = 'user'
+>>>>>>> 59a0705b6b3872f3473cc577e6ffe3a170031bbd
                 }
                 return <Icon name={iconName} size={size} color={color} />;
                 // return <Image style={{height: 24, width: 24, resizeMode: 'cover'}} source={require('../../assets/tours.png')}/>
@@ -77,6 +131,10 @@ const tabsScreen = () => (
     >
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="Tours" component={ToursStackScreen} />
+<<<<<<< HEAD
+=======
+        <Tab.Screen name="Login" component={LoginStackScreen} />
+>>>>>>> 59a0705b6b3872f3473cc577e6ffe3a170031bbd
     </Tab.Navigator>
 )
 

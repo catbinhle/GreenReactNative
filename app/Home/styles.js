@@ -47,25 +47,6 @@ const Styles = StyleSheet.create({
         resizeMode: 'stretch',
         borderRadius: 6
     },
-    searchView: {
-        flexDirection: 'row',
-        height: 44, 
-        backgroundColor: 'white',
-        borderRadius: 6,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingHorizontal: 10,
-        // borderColor: 'grey',
-        // borderWidth: 0.5,
-        shadowColor: 'black',
-        shadowOffset: {
-          width: 10,
-          height: 10
-        },
-        shadowRadius: 8,
-        shadowOpacity: 0.4,
-        elevation: 10,
-    },
     txtName: {
         fontSize: 14,
         fontWeight: '700',

@@ -1,4 +1,4 @@
-import react, { Component } from "react"
+import React, { Component } from "react"
 import { View, Text, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
 import styles from "./styles"
 
