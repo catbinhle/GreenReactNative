@@ -41,6 +41,11 @@ const Styles = StyleSheet.create({
         backgroundColor: 'black',
         opacity: 0.8
     },
+    emptyView: {
+        margin: 16,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     image: {
         height: 200, 
         width: '100%',

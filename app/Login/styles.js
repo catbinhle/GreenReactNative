@@ -4,6 +4,14 @@ const Styles = StyleSheet.create({
     container: {
         flex: 1, 
     },
+    infoView: {
+        marginTop: 16,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    alreadyView: {
+        margin: 16
+    },
     boxView: {
         margin: 16
     },
@@ -25,6 +33,9 @@ const Styles = StyleSheet.create({
         borderRadius: 6,
         height: 44
     },
+    logoutBtn: {
+        marginTop: 16
+    },
     title: {
         fontSize: 16,
         fontWeight: 'bold'
@@ -37,6 +48,10 @@ const Styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         color: 'white'
+    },
+    alreadyUserTxt: {
+        fontSize: 16,
+        fontWeight: 'bold',
     }
 })
 
