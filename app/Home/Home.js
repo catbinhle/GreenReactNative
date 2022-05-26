@@ -46,6 +46,13 @@ class Home extends Component {
         this.getMoviesFromApiAsync(userInfo?.accessToken)
     }
 
+    componentDidUpdate(prevProps) {
+        const {userInfo} = this.props 
+        if (userInfo !== prevProps.userInfo) {
+            this.getMoviesFromApiAsync(userInfo?.accessToken)
+        }
+    }
+
     _renderItem = ({item}) => (
         <TouchableOpacity 
             style={styles.item}
