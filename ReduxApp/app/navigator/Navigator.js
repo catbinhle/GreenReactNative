@@ -1,0 +1,94 @@
+import React from "react"
+import Home from '../modules/Home/Home'
+import Cities from "../modules/Cities/Cities"
+import DetailCity from "../modules/DetailCity/DetailCity"
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5' // tham khảo: https://github.com/oblador/react-native-vector-icons/blob/master/FONTAWESOME5.md
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Map from "../modules/Map/Map" 
+import Login from "../modules/Login/Login"
+
+const HomeStack = createNativeStackNavigator()
+const ToursStack = createNativeStackNavigator()
+const LoginStack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator()
+
+const HomeStackScreen = () => (
+    <HomeStack.Navigator
+        screenOptions={{
+            headerStyle: {
+                backgroundColor: '#7f5bc7',
+            },
+            headerTintColor: 'white',
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+            headerBackTitle: ''
+        }}
+    >
+        <HomeStack.Screen name="Home" component={Home}/>
+        <HomeStack.Screen
+            name="DetailCity"
+            component={DetailCity}
+            options={({ route }) => ({ title: route.params.name })}
+        />
+        <HomeStack.Screen
+            name="Map"
+            component={Map}
+            options={({ route }) => ({ title: route.params.name })}
+        />
+    </HomeStack.Navigator>
+)
+
+const ToursStackScreen = () => (
+    <ToursStack.Navigator>
+        <ToursStack.Screen name="Tours" component={Cities} />
+    </ToursStack.Navigator>
+)
+
+const LoginStackScreen = () => (
+    <LoginStack.Navigator>
+        <LoginStack.Screen name="Login" component={Login} />
+    </LoginStack.Navigator>
+)
+
+const TabsScreen = () => (
+    <Tab.Navigator
+        screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+                let iconName;
+
+                if (route.name === 'Home') {
+                    iconName = 'home'
+                } else if (route.name === 'Tours') {
+                    iconName = 'route'
+                } else {
+                    iconName = 'user'
+                }
+                return <FontAwesome5 name={iconName} light/>
+            },
+            tabBarActiveTintColor: 'white',
+            tabBarInactiveTintColor: '#81898a',
+            size: 24,
+            headerShown: false,
+            tabBarStyle: {
+                backgroundColor: '#7f5bc7'
+            }
+        })}
+    >
+        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="Tours" component={ToursStackScreen} />
+        <Tab.Screen name="Login" component={LoginStackScreen} />
+    </Tab.Navigator>
+)
+
+const Navigator = () => {
+    return (
+        <NavigationContainer>
+            <TabsScreen />
+        </NavigationContainer>
+    )
+}
+
+export default Navigator
