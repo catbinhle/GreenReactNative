@@ -1,8 +1,9 @@
 import React from "react"
+import {Image} from 'react-native'
 import Home from '../modules/Home/Home'
 import Cities from "../modules/Cities/Cities"
 import DetailCity from "../modules/DetailCity/DetailCity"
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5' // tham khảo: https://github.com/oblador/react-native-vector-icons/blob/master/FONTAWESOME5.md
+//import FontAwesome5 from 'react-native-vector-icons/FontAwesome' // tham khảo: https://github.com/oblador/react-native-vector-icons/blob/master/FONTAWESOME5.md
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -66,7 +67,8 @@ const TabsScreen = () => (
                 } else {
                     iconName = 'user'
                 }
-                return <FontAwesome5 name={iconName} light/>
+                // return <FontAwesome5 name={iconName}/>
+                return <Image/>
             },
             tabBarActiveTintColor: 'white',
             tabBarInactiveTintColor: '#81898a',
