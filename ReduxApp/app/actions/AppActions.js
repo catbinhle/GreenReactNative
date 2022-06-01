@@ -14,6 +14,13 @@ export const appLoginRes = (res) => (
         payload: res
     }
 )
+//***** Lưu ý: chúng ta có thể viết theo dạng function như sau:
+// export function appLoginRes(res) {
+//     return {
+//         type: APP_LOGIN_RESPONSE,
+//         payload: res
+//     }
+// }
 
 export const appLogout = () => (
     {
