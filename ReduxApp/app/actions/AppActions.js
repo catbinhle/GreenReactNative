@@ -1,11 +1,20 @@
-import {APP_LOGIN, APP_LOGOUT, APP_LOGIN_RESPONSE, HOME_GET_LIST} from '../define/ActionTypes'
+import {APP_LOGOUT, APP_LOGIN_RESPONSE} from '../define/ActionTypes'
+import {api} from '../Servers/API'
 
 // LOGIN - Define các sự kiện ở trang Login và chung chung của APP
 export const appLogin = (param) => (
-    {
-        type: APP_LOGIN,
-        payload: param
-    }
+    api({
+        endPoint: 'signin',
+        method: 'POST',
+        param: {
+            client_data:{
+                username: param.username,
+                password: param.password
+            }
+        },
+        isLogin: true,
+        action: (json) => appLoginRes(json)
+    })
 )
 
 export const appLoginRes = (res) => (
@@ -25,13 +34,5 @@ export const appLoginRes = (res) => (
 export const appLogout = () => (
     {
         type: APP_LOGOUT,
-    }
-)
-
-// HOME - Define các sự kiện ở trang Home
-export const getHomeList = (res) => (
-    {
-        type: HOME_GET_LIST,
-        payload: res
     }
 )

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react" //***** Dùng Hook: useEffect
 import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import styles from './styles'
 import { useSelector, useDispatch } from 'react-redux' //***** Dùng Hook: thì dùng useSelector, useDispatch để map với action và reducer
-import { appLoginRes, appLogout } from '../../actions/AppActions'
+import { appLogin, appLogout } from '../../actions/AppActions'
 
 //***** Dùng Hook 
 const Login = () => {
@@ -13,65 +13,6 @@ const Login = () => {
     console.log('GREEN LOG APP REDUCER AT LOGIN: ', app)
     const logout = () => {
         dispatch(appLogout()) //***** Dùng Hook: thay thế cho mapDispatchToProps ở Class - Component
-    }
-    const loginAPI = async () => { //***** Lưu ý: nếu dùng Promise thì không cần async
-        //***** Nếu dùng Promise 
-        // fetch(
-        //     'http://i-web.com.vn/api/v1/auth/signin', 
-        //     {
-        //         method: 'POST',
-        //         headers: {
-        //           Accept: 'application/json',
-        //           'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify({
-        //             client_data:
-        //                 {
-        //                     username:username,
-        //                     password:password
-        //                 }
-
-        //         })
-        //     })
-        //     .then((response) => response.json())
-        //     .then((json) => {
-        //         console.log('LOGIN: ', json)
-        //         return json;
-        //     })
-        //     .catch((error) => {
-        //         console.error(error);
-        //     });
-
-        //***** Nếu dùng Async - Await 
-        try {
-            const response = await fetch(
-                'http://i-web.com.vn/api/v1/auth/signin', //***** URL 
-                //***** Config header trước khi request API lên server, có thể xem phần request API ở trang Home, sẽ viết kỹ hơn.
-                {
-                    method: 'POST', //***** Dùng phương thức POST
-                    headers: {
-                        Accept: 'application/json', //***** Config Accept theo format application/json
-                        'Content-Type': 'application/json' //***** Config Content-Type theo format application/json
-                        //***** Lưu ý, ở đây không cần Authorization, cái này do team Server định nghĩa và họ sẽ cung cấp cho mình biết. 
-                        //***** Nhưng như chúng ta cũng hiểu, Login là để nhận về token, do đó, API này không cần tới Authorization
-                    },
-                    body: JSON.stringify({
-                        // ***** Tham số sẽ được định dạng kiểu JSON, thường sẽ do team Server định nghĩa, và họ sẽ cung cấp cho chúng ta biết, ở đây, ta có 1 field là client_data, trong đó có 2 field là username và password
-                        client_data:
-                        {
-                            username: username,
-                            password: password
-                        }
-
-                    })
-                }
-            );
-            const json = await response.json()
-            console.log('LOGIN: ', json)
-            dispatch(appLoginRes(json)) //***** Dùng Hook: thay thế cho mapDispatchToProps ở Class - Component
-        } catch (error) {
-            console.error(error)
-        }
     }
     const enterBox = ({ title, isPassword = false, placeholder, value, changeText, style = null }) => (
         <View style={[styles.boxView, style]}>
@@ -103,7 +44,7 @@ const Login = () => {
                 value: password,
                 changeText: (text) => setPassword(text)
             })}
-            <TouchableOpacity style={styles.btn} onPress={() => loginAPI()}>
+            <TouchableOpacity style={styles.btn} onPress={() => dispatch(appLogin({username: username, password: password}))}>
                 <Text style={styles.txtBtn}>Login</Text>
             </TouchableOpacity>
         </View>

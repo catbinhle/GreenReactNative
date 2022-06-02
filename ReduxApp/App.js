@@ -15,10 +15,10 @@
  export default function App() {
    LogBox.ignoreAllLogs()
    LogBox.ignoreLogs(['Warning: ...'])
-  //  let configureStore = store() //// ***** Nếu dùng createStore (deprecated)
+   let configureStore = store() //// ***** Nếu dùng createStore (deprecated)
    return (
     /* ***** Nếu dùng createStore (deprecated) => thay thế: configureStore */
-    <Provider store={store}> 
+    <Provider store={configureStore}> 
      <Navigator/>
     </Provider>
    )
