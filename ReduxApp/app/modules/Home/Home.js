@@ -20,13 +20,13 @@ class Home extends Component {
     componentDidMount() {
         // const {userInfo} = this.props.app //***** Dùng app từ Reducer, lưu ý: phải có this.props
         // console.log('HOME User Info: ', userInfo)
-        this.props.getHomeList()
+        // this.props.getHomeList()
     }
 
     componentDidUpdate(prevProps) {
         const {userInfo} = this.props.app //***** Dùng app từ Reducer, lưu ý: phải có this.props
         if (userInfo !== prevProps.userInfo) {
-            this.props.getHomeList()
+            // this.props.getHomeList()
         }
     }
 
@@ -70,7 +70,7 @@ class Home extends Component {
 //***** Liên kết với các sự kiện ở Action thông qua keyword dispatch
 const mapDispatchToProps = (dispatch) => (
     bindActionCreators({
-        getHomeList //***** Dùng action getHomeList
+        // getHomeList //***** Dùng action getHomeList
     }, dispatch)
 )
 
