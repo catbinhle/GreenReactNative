@@ -25,7 +25,7 @@
 // )
 
 // ***** Function này dành cho redux-saga
-export const api = async(endPoint, method, param, isLogin = false) => {
+export const api = async({endPoint, method, param, isLogin = false}) => {
   try {
     const response = await fetch(
       'http://i-web.com.vn/api/v1/auth/' + endPoint,
