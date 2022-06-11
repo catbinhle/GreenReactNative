@@ -1,6 +1,6 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest, select, fork, all, delay } from 'redux-saga/effects'
 import {api} from '../Servers/API'
-import {APP_LOGIN, APP_LOGIN_RESPONSE} from '../define/ActionTypes'
+import {APP_LOGIN, APP_LOGIN_RESPONSE, HOME_GET_LIST, HOME_GET_LIST_RES_SUCCESS, HOME_GET_LIST_RES_FAIL} from '../define/ActionTypes'
 
 function* appLogin(action) {
     try {
@@ -32,10 +32,29 @@ function* appLogin(action) {
 }
 
 // ***** Nếu như muốn viết thêm nhiều request API thì cứ viết tiếp dưới đây, như getHomeList
+function* getHomeList() {
+    try {
+        const {app} = yield select()
+        const response = yield call(
+            api,
+            {
+                endPoint: 'post', 
+                method: 'POST', 
+                param: {},
+                token: app.userInfo?.accessToken
+            }
+        )
+        yield put({type: HOME_GET_LIST_RES_SUCCESS, payload: response?.data})
+    } catch (e) {
+        console.log(e)
+    //    yield put({type: APP_LOGIN_RESPONSE, payload: 'Request error!'})
+    }
+}
 
 function* appSaga() {
     // ***** Thử dùng với takeLastest để xem sự khác biệt
     yield takeEvery(APP_LOGIN, appLogin)
+    yield takeEvery(HOME_GET_LIST, getHomeList)
 }
 
 export default appSaga

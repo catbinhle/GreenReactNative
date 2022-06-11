@@ -25,7 +25,7 @@
 // )
 
 // ***** Function này dành cho redux-saga
-export const api = async({endPoint, method, param, isLogin = false}) => {
+export const api = async({endPoint, method, param, isLogin = false, token = null}) => {
   try {
     const response = await fetch(
       'http://i-web.com.vn/api/v1/auth/' + endPoint,
@@ -34,7 +34,7 @@ export const api = async({endPoint, method, param, isLogin = false}) => {
           headers: {
               Accept: 'application/json',
               'Content-Type': 'application/json',
-              'Authorization': isLogin ? null : 'Bearer ' +  userInfo?.accessToken, 
+              'Authorization': isLogin ? null : 'Bearer ' +  token, 
           },
           body: JSON.stringify(param),
       }

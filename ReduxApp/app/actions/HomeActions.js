@@ -1,5 +1,4 @@
-import {HOME_GET_LIST} from '../define/ActionTypes'
-import {api} from '../Servers/API'
+import {HOME_GET_LIST, HOME_GET_LIST_RES_SUCCESS, HOME_GET_LIST_RES_FAIL} from '../define/ActionTypes'
 
 // HOME - Define các sự kiện ở trang Home
 
@@ -13,9 +12,22 @@ import {api} from '../Servers/API'
 //     })
 // )
 
-export const getHomeListRes = (res) => (
+export const getHomeList = () => (
     {
         type: HOME_GET_LIST,
+    }
+)
+
+export const getHomeListResSuccess = (res) => (
+    {
+        type: HOME_GET_LIST_RES_SUCCESS,
+        payload: res
+    }
+)
+
+export const getHomeListResFail = (res) => (
+    {
+        type: HOME_GET_LIST_RES_FAIL,
         payload: res
     }
 )

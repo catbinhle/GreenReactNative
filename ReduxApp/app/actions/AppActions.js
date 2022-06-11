@@ -1,5 +1,4 @@
 import {APP_LOGOUT, APP_LOGIN_RESPONSE, APP_LOGIN} from '../define/ActionTypes'
-import {api} from '../Servers/API'
 
 // LOGIN - Define các sự kiện ở trang Login và chung chung của APP
 
