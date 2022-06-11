@@ -18,17 +18,29 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        // const {userInfo} = this.props.app //***** Dùng app từ Reducer, lưu ý: phải có this.props
-        // console.log('HOME User Info: ', userInfo)
-        // this.props.getHomeList()
+        const {userInfo} = this.props.app //***** Dùng app từ Reducer, lưu ý: phải có this.props
+        console.log('HOME User Info: ', userInfo)
+        if (userInfo?.accessToken) {
+            new Promise((resolve) =>
+                setTimeout(
+                    () => { this.props.getHomeList() },
+                    2000
+                )
+            )
+        } 
     }
 
-    componentDidUpdate(prevProps) {
-        const {userInfo} = this.props.app //***** Dùng app từ Reducer, lưu ý: phải có this.props
-        if (userInfo !== prevProps?.app?.userInfo) {
-            this.props.getHomeList()
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     const {userInfo} = this.props.app //***** Dùng app từ Reducer, lưu ý: phải có this.props
+    //     if (userInfo !== prevProps?.app?.userInfo && userInfo?.accessToken) {
+    //         new Promise((resolve) =>
+    //             setTimeout(
+    //                 () => { this.props.getHomeList() },
+    //                 5000
+    //             )
+    //         )
+    //     }
+    // }
 
     _renderItem = ({item}) => (
         <TouchableOpacity 

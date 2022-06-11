@@ -9,7 +9,6 @@ const initialState = {
 const homeReducer = (state = initialState, action) => {
     switch (action.type) {
         case HOME_GET_LIST_RES_SUCCESS:
-            debugger
             return { ...state, homeList: action.payload }
         default:
           return state

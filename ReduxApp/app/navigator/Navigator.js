@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Map from "../modules/Map/Map" 
 import Login from "../modules/Login/Login"
+import { useSelector } from 'react-redux'
 
 const HomeStack = createNativeStackNavigator()
 const ToursStack = createNativeStackNavigator()
@@ -81,14 +82,21 @@ const TabsScreen = () => (
     >
         <Tab.Screen name="Home" component={HomeStackScreen} />
         <Tab.Screen name="Tours" component={ToursStackScreen} />
-        <Tab.Screen name="Login" component={LoginStackScreen} />
+        {/* <Tab.Screen name="Login" component={LoginStackScreen} /> */}
     </Tab.Navigator>
 )
 
 const Navigator = () => {
+    const app = useSelector(state => state.app)
     return (
         <NavigationContainer>
-            <TabsScreen />
+            {
+                app.userInfo.accessToken 
+                ?
+                <TabsScreen />
+                :
+                <LoginStackScreen />
+            }
         </NavigationContainer>
     )
 }
