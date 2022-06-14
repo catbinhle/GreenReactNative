@@ -14,13 +14,16 @@ const Login = () => {
     console.log('GREEN LOG APP REDUCER AT LOGIN: ', app)
     useEffect(() => {
         getData()
-    })
+    }, [username, password])
+
     const getData = async () => {
         try {
-            const jsonValue = await AsyncStorage.getItem('@account')
-            setUsername(JSON.parse(jsonValue).username)
-            setPassword(JSON.parse(jsonValue).password)
-            // return jsonValue != null ? JSON.parse(jsonValue) : null;
+            const stringValue = await AsyncStorage.getItem('@account')
+            setUsername(JSON.parse(stringValue).username)
+            setPassword(JSON.parse(stringValue).password)
+            if (stringValue != '') {
+                dispatch(appLogin({username: username, password: password}))
+            }
         } catch(e) {
           // error reading value
         }
@@ -88,14 +91,14 @@ const Login = () => {
             <View style={styles.infoView}>
                 <Text style={styles.alreadyUserTxt}>
                     {
-                        app.userInfo.accessToken 
+                        app.userInfo?.accessToken 
                         ? 'Thông tin của bạn:'
                         : 'Bạn chưa đăng nhập, xin vui lòng đăng nhập'
                     }
                 </Text>
             </View>
             {  
-            app.userInfo.accessToken 
+            app.userInfo?.accessToken 
                 ? alreadyLogin({username: app.userInfo.username})
                 : loginView()
             }

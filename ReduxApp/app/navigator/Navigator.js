@@ -91,7 +91,7 @@ const Navigator = () => {
     return (
         <NavigationContainer>
             {
-                app.userInfo.accessToken 
+                app.userInfo?.accessToken
                 ?
                 <TabsScreen />
                 :
