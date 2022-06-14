@@ -8,7 +8,7 @@ function* appLogin(action) {
             api,
             {
                 endPoint: 'signin', 
-                method: 'POST', 
+                method: 'post', 
                 param: {
                     client_data:{
                         username: action.payload.username,
@@ -39,7 +39,7 @@ function* getHomeList() {
             api,
             {
                 endPoint: 'post', 
-                method: 'POST', 
+                method: 'post', 
                 param: {},
                 token: app.userInfo?.accessToken
             }

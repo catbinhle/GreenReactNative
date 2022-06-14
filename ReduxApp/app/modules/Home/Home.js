@@ -30,17 +30,17 @@ class Home extends Component {
         } 
     }
 
-    // componentDidUpdate(prevProps) {
-    //     const {userInfo} = this.props.app //***** Dùng app từ Reducer, lưu ý: phải có this.props
-    //     if (userInfo !== prevProps?.app?.userInfo && userInfo?.accessToken) {
-    //         new Promise((resolve) =>
-    //             setTimeout(
-    //                 () => { this.props.getHomeList() },
-    //                 5000
-    //             )
-    //         )
-    //     }
-    // }
+    componentDidUpdate(prevProps) {
+        const {userInfo} = this.props.app //***** Dùng app từ Reducer, lưu ý: phải có this.props
+        if (userInfo !== prevProps?.app?.userInfo && userInfo?.accessToken) {
+            new Promise((resolve) =>
+                setTimeout(
+                    () => { this.props.getHomeList() },
+                    5000
+                )
+            )
+        }
+    }
 
     _renderItem = ({item}) => (
         <TouchableOpacity 

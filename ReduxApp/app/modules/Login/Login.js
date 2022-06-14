@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import styles from './styles'
 import { useSelector, useDispatch } from 'react-redux' //***** Dùng Hook: thì dùng useSelector, useDispatch để map với action và reducer
 import { appLogin, appLogout } from '../../actions/AppActions'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 //***** Dùng Hook 
 const Login = () => {
@@ -11,10 +12,34 @@ const Login = () => {
     const dispatch = useDispatch() //***** Dùng Hook: thay thế cho mapDispatchToProps ở Class - Component
     const app = useSelector(state => state.app) //***** Dùng Hook: thay thế cho mapStateToProps ở Class - Component
     console.log('GREEN LOG APP REDUCER AT LOGIN: ', app)
+    useEffect(() => {
+        getData()
+    })
+    const getData = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem('@account')
+            setUsername(JSON.parse(jsonValue).username)
+            setPassword(JSON.parse(jsonValue).password)
+            // return jsonValue != null ? JSON.parse(jsonValue) : null;
+        } catch(e) {
+          // error reading value
+        }
+    }
+    const storeAccount = async (value) => {
+        try {
+          await AsyncStorage.setItem('@account',  JSON.stringify(value))
+        } catch (e) {
+          // saving error
+        }
+      }
     const logout = () => {
         dispatch(appLogout()) //***** Dùng Hook: thay thế cho mapDispatchToProps ở Class - Component
     }
-    const enterBox = ({ title, isPassword = false, placeholder, value, changeText, style = null }) => (
+    const login = () => {
+        storeAccount({username: username, password: password})
+        dispatch(appLogin({username: username, password: password}))
+    }
+     const enterBox = ({ title, isPassword = false, placeholder, value, changeText, style = null }) => (
         <View style={[styles.boxView, style]}>
             <Text style={styles.title}>{title}</Text>
             <View style={styles.enterBox}>
@@ -44,7 +69,7 @@ const Login = () => {
                 value: password,
                 changeText: (text) => setPassword(text)
             })}
-            <TouchableOpacity style={styles.btn} onPress={() => dispatch(appLogin({username: username, password: password}))}>
+            <TouchableOpacity style={styles.btn} onPress={() => login()}>
                 <Text style={styles.txtBtn}>Login</Text>
             </TouchableOpacity>
         </View>
