@@ -1,67 +1,107 @@
-import react, {Component} from "react"
-import {View, Text, Image, TouchableOpacity, FlatList, TextInput} from 'react-native'
-import styles from "./styles"
-import Icon from 'react-native-vector-icons/FontAwesome'
+import React from "react";
+import {Component} from "react";
+import {View, Text, Image, Dimensions, ScrollView, TouchableOpacity} from "react-native";
+
+import homeStyles from "./homeStyles";
+import provinces from "../Data/Province/provinces";
+import news from "../Data/News/news";
 
 class Home extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            provinces: []
+        }
     }
+    //Gọi server để lấy dữ liệu
+    getMoviesFromApiAsync = async() => {
+        try {
+            const response = await fetch(
+                'https://cattechsolutions.com/greenRN.json'
+            )
+            const json = await response.json()
+            this.setState({
+                provinces: json
+            })
+        } catch (error) {
+            console.error(error)
+        }
 
-    state = {
-
-    }
-
-    goScreen = (item) => {
-        this.props.goScreen('DetailScreen', item)
-    }
-
+}
     componentDidMount() {
-        this.props.title('Home')
+        this.getMoviesFromApiAsync()
     }
-
-    _renderItem = ({item}) => (
-        <TouchableOpacity 
-            style={styles.item}
-            onPress={() => this.goScreen(item)}>
-            <Image style={styles.image} source={{uri: item?.image}}/>
-            <View style={styles.opacityInfoView}/>
-            <View style={styles.infoView}>
-                <Text style={styles.txtName}>{item?.name}</Text>
-            </View>
-        </TouchableOpacity>
-    )
-
-    _renderSearch = () => {
-        return (
-            <View style={styles.searchView}>
-                <TextInput 
-                    style={{flex: 1, marginRight: 10}}
-                    placeholder={'Nhập tên thành phố'}
-                    placeholderTextColor={'grey'}
-                    // secureTextEntry={true} => thường dùng cho mật khẩu
-                    // keyboardType={'numeric'} => lựa chọn bàn phím
-                    onChangeText={(value) => {
-                        console.log('TEST: --- ', value)
-                    }}
+    _goScreen(province) {
+        this.props.navigation.navigate('Detail', province)
+    }
+    _renderProvince(province) {
+        return(
+            <TouchableOpacity
+                style={homeStyles.province}
+                onPress={() => {
+                    return this._goScreen(province)
+                }}
+            >
+                <Image
+                    style={homeStyles.image}
+                    source={{uri: province.image}}
                 />
-                <Icon name="search" size={16} color="dark-grey" />
+                <Text style={{marginVertical: 8, fontSize: 18}}>{province.name}</Text>
+            </TouchableOpacity>
+        )
+    }
+    _renderNews(news) {
+        return(
+            <View style={homeStyles.province}>
+                <Image
+                    style={homeStyles.image}
+                    source={{uri: news.image}}
+                />
+                <Text style={{marginVertical: 8, fontSize: 16}}>{news.info}</Text>
             </View>
         )
     }
-
     render() {
-        const {param} = this.props
-        return (
-            <View style={styles.container}>
-                {this._renderSearch()}
-                <FlatList
-                    numColumns={2}
-                    showsVerticalScrollIndicator={false}
-                    data={param}
-                    renderItem={this._renderItem}
-                    keyExtractor={item => item.id}
-                />
+        return(
+            <View style={{flex: 1}}>
+                {/*1. phần giới thiệu cố định*/}
+                <View style={homeStyles.introduce}>
+                    <Image
+                        style={{height: 130, width: Dimensions.get('window').width}}
+                        source={{uri: 'https://lambienhieu.vn/wp-content/uploads/2020/05/bang-hieu-quang-cao-homestay-7.jpg'}}
+                    />
+                    <Text style={{fontWeight: 'bold', fontSize: 26, color: 'white'}}>HOMESTAY</Text>
+                </View>
+
+                {/*2. phần nội dung gồm 4 View: text cố định, province, text cố định, news*/}
+                <View style={homeStyles.content}>
+                    <ScrollView style={{flex: 1, paddingHorizontal: 16, paddingVertical: 8}}>
+                        {/*2.1 text cố định*/}
+                        <View>
+                            <Text style={{fontWeight: 'bold', fontSize: 21}}>Introduce</Text>
+                        </View>
+                        {/*2.2 province*/}
+                        <ScrollView horizontal={true}>
+                            {
+                                this.state.provinces.map((province) => {
+                                    return this._renderProvince(province)
+                                })
+                            }
+                        </ScrollView>
+                        {/*2.3 text cố định*/}
+                        <View>
+                            <Text style={{fontWeight: 'bold', fontSize: 21}}>News</Text>
+                        </View>
+                        {/*2.4 news*/}
+                        <ScrollView horizontal={true}>
+                            {
+                                news.map((news) => {
+                                    return this._renderNews(news)
+                                })
+                            }
+                        </ScrollView>
+                    </ScrollView>
+                </View>
             </View>
 
         )

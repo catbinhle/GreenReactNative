@@ -1,0 +1,1 @@
+export const APP_LOGIN_RESPONSE = 'APP_LOGIN_RESPONSE'
