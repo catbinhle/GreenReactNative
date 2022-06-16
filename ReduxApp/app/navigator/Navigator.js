@@ -9,10 +9,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Map from "../modules/Map/Map" 
 import Login from "../modules/Login/Login"
+import Setting from "../modules/Setting/Setting"
 import { useSelector } from 'react-redux'
 
 const HomeStack = createNativeStackNavigator()
 const ToursStack = createNativeStackNavigator()
+const SettingStack = createNativeStackNavigator()
 const LoginStack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
@@ -55,6 +57,12 @@ const LoginStackScreen = () => (
     </LoginStack.Navigator>
 )
 
+const SettingStackScreen = () => (
+    <SettingStack.Navigator>
+        <SettingStack.Screen name="Setting" component={Setting} />
+    </SettingStack.Navigator>
+)
+
 const TabsScreen = () => (
     <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -81,8 +89,7 @@ const TabsScreen = () => (
         })}
     >
         <Tab.Screen name="Home" component={HomeStackScreen} />
-        <Tab.Screen name="Tours" component={ToursStackScreen} />
-        {/* <Tab.Screen name="Login" component={LoginStackScreen} /> */}
+        <Tab.Screen name="Setting" component={SettingStackScreen} />
     </Tab.Navigator>
 )
 
