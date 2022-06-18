@@ -94,11 +94,13 @@ const TabsScreen = () => (
 )
 
 const Navigator = () => {
-    const app = useSelector(state => state.app)
+    // const app = useSelector(state => state.app)
+    const state = useSelector(state => state)
+    console.log('GREEN LOG APP REDUCER AT APP MAIN: ', state)
     return (
         <NavigationContainer>
             {
-                app.userInfo?.accessToken
+                state?.app?.userInfo?.accessToken
                 ?
                 <TabsScreen />
                 :

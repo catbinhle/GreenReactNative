@@ -3,6 +3,8 @@ import { createStore, applyMiddleware } from 'redux' //// ***** Nếu dùng crea
 import rootReducer from '../reducers'
 import createSagaMiddleware from 'redux-saga'
 import appSaga from '../middleware/appSaga'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 // const store = configureStore({
 //   reducer: rootReducer,
@@ -13,14 +15,21 @@ import appSaga from '../middleware/appSaga'
 // ***** Nếu dùng createStore (deprecated), lưu ý: comment phần store ở trên
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware()
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ["app", "home"]
+}
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 const configureStore = (initialState) => {
   const store = createStore(
-    rootReducer, 
+    persistedReducer, 
     initialState, 
     applyMiddleware(sagaMiddleware)
   )
   sagaMiddleware.run(appSaga)
-  return store
+  const persister = persistStore(store)
+  return {store, persister}
 }
 
 export default configureStore

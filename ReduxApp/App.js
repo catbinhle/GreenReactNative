@@ -10,16 +10,21 @@
  import { LogBox } from 'react-native'
  import Navigator from './app/navigator/Navigator'
  import { Provider } from 'react-redux'
- import store from './app/store/ConfigureStore'
- 
+ import configureStore from './app/store/ConfigureStore'
+ import { PersistGate } from 'redux-persist/integration/react'
+
+  
  export default function App() {
    LogBox.ignoreAllLogs()
    LogBox.ignoreLogs(['Warning: ...'])
-   let configureStore = store() //// ***** Nếu dùng createStore (deprecated)
+  //  let configureStore = store() //// ***** Nếu dùng createStore (deprecated)
+  const { store, persister } = configureStore()
    return (
     /* ***** Nếu dùng createStore (deprecated) => thay thế: configureStore */
-    <Provider store={configureStore}> 
-     <Navigator/>
+    <Provider store={store}> 
+      <PersistGate loading={null} persistor={persister}>
+        <Navigator/>
+      </PersistGate>
     </Provider>
    )
  }

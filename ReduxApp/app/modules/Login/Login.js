@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react" //***** Dùng Hook: useEffect sẽ thay thế cho componentDidMount, useState thay thế cho state ở Class - Component
-import { View, Text, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, Animated } from 'react-native'
 import styles from './styles'
 import { useSelector, useDispatch } from 'react-redux' //***** Dùng Hook: thì dùng useSelector, useDispatch để map với action và reducer
 import { appLogin, appLogout } from '../../actions/AppActions'
@@ -13,33 +13,33 @@ const Login = () => {
     const app = useSelector(state => state.app) //***** Dùng Hook: thay thế cho mapStateToProps ở Class - Component
     console.log('GREEN LOG APP REDUCER AT LOGIN: ', app)
     useEffect(() => {
-        getData()
+        // getData()
     }, [username, password])
 
-    const getData = async () => {
-        try {
-            const stringValue = await AsyncStorage.getItem('@account')
-            setUsername(JSON.parse(stringValue).username)
-            setPassword(JSON.parse(stringValue).password)
-            if (stringValue != '') {
-                dispatch(appLogin({username: username, password: password}))
-            }
-        } catch(e) {
-          // error reading value
-        }
-    }
-    const storeAccount = async (value) => {
-        try {
-          await AsyncStorage.setItem('@account',  JSON.stringify(value))
-        } catch (e) {
-          // saving error
-        }
-      }
+    // const getData = async () => {
+    //     try {
+    //         const stringValue = await AsyncStorage.getItem('@account')
+    //         setUsername(JSON.parse(stringValue).username)
+    //         setPassword(JSON.parse(stringValue).password)
+    //         if (stringValue != '') {
+    //             dispatch(appLogin({username: username, password: password}))
+    //         }
+    //     } catch(e) {
+    //       // error reading value
+    //     }
+    // }
+    // const storeAccount = async (value) => {
+    //     try {
+    //       await AsyncStorage.setItem('@account',  JSON.stringify(value))
+    //     } catch (e) {
+    //       // saving error
+    //     }
+    //   }
     const logout = () => {
         dispatch(appLogout()) //***** Dùng Hook: thay thế cho mapDispatchToProps ở Class - Component
     }
     const login = () => {
-        storeAccount({username: username, password: password})
+        // storeAccount({username: username, password: password})
         dispatch(appLogin({username: username, password: password}))
     }
      const enterBox = ({ title, isPassword = false, placeholder, value, changeText, style = null }) => (

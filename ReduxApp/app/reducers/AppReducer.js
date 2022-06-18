@@ -11,6 +11,13 @@ const initialState = {
 //***** Dành cho quản lý state cho toàn app (có phần login)
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
+        case "persist/REHYDRATE": {
+            debugger
+            if (action && action.payload) {
+                return action.payload;
+            }
+            return initialState;
+        }
         case APP_LOGIN:
             return { ...state, account: action.payload }
         case APP_LOGIN_RESPONSE:

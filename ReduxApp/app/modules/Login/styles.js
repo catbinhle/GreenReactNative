@@ -31,7 +31,7 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'blue',
         borderRadius: 6,
-        height: 44
+        height: 44,
     },
     logoutBtn: {
         marginTop: 16
